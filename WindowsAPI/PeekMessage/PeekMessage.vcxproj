@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="Qudrangle.h" />
@@ -134,6 +135,7 @@
     <ClInclude Include="Triangle.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="Qudrangle.cpp" />
     <ClCompile Include="PeekMessage.cpp" />
