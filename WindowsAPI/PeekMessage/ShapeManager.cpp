@@ -72,7 +72,7 @@ void ShapeManager::Update()
 		// 버튼을 클릭 했을 경우
 		if (CheckButtons(pt))
 		{
-			Draw();
+			//Draw();
 			DrawButtons();
 		}
 		else
