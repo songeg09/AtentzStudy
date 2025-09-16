@@ -126,6 +126,8 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Circle.h" />
+    <ClInclude Include="GDIManager.h" />
+    <ClInclude Include="Mecro.h" />
     <ClInclude Include="Qudrangle.h" />
     <ClInclude Include="PeekMessage.h" />
     <ClInclude Include="Shape.h" />
@@ -137,6 +139,7 @@
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="GDIManager.cpp" />
     <ClCompile Include="Qudrangle.cpp" />
     <ClCompile Include="PeekMessage.cpp" />
     <ClCompile Include="Shape.cpp" />

@@ -1,0 +1,19 @@
+#pragma once
+
+enum COLOR
+{
+	BLACK = 0,
+	RED,
+	BLUE,
+	GREEN,
+	WHITE,
+	COUNT_COLOR
+};
+
+enum SHAPE
+{
+	QUADRANGLE = 0,
+	CIRCLE,
+	TRIANGLE,
+	COUNT_SHAPE
+};

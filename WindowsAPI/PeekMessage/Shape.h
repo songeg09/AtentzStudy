@@ -1,15 +1,6 @@
 #pragma once
 #include "framework.h"
-
-enum COLOR
-{
-	BLACK = 0,
-	RED,
-	BLUE,
-	GREEN,
-	WHITE,
-	COUNT_COLOR
-};
+#include "Mecro.h"
 
 class Shape
 {

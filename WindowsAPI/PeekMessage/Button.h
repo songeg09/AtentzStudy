@@ -1,11 +1,15 @@
 #pragma once
 #include <functional>
-#include "Shape.h"
 #include <string>
+#include "framework.h"
+#include "Mecro.h"
 
-class Button : public Shape
+class Button
 {
 private:
+	HDC m_hdc;
+	RECT m_rect;
+	bool m_bActivate;
 	std::function<void()> m_callBackFunc;
 	std::wstring m_strText;
 
@@ -16,7 +20,7 @@ public:
 	Button();
 	~Button();
 	void Init(HDC _hdc, POINT _pt, std::function<void()> _callBackFunc, std::wstring _Text);
-	void OnButtonClick();
-	bool isClicked(POINT pt);
-	void Draw() override;
+	void SetActivate();
+	void Draw();
+	bool IsClicked(POINT pt);
 };

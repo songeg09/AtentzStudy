@@ -4,14 +4,6 @@
 #include "Shape.h"
 #include "Button.h"
 
-enum SHAPE
-{
-	QUADRANGLE = 0,
-	CIRCLE,
-	TRIANGLE,
-	COUNT_SHAPE
-};
-
 struct KeyStatus
 {
 	bool m_bDown;
@@ -46,6 +38,10 @@ public:
 	void KeyUpdate();
 	void Draw();
 	void DrawButtons();
+
+	double Dist(POINT prev_pt, POINT cur_pt);
+	
+
 	bool CheckButtons(POINT _pt);
 
 	void SetShape(SHAPE _shape);

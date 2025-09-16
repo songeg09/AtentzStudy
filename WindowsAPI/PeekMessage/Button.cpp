@@ -1,4 +1,5 @@
 #include "Button.h"
+#include "GDIManager.h"
 
 Button::Button()
 {
@@ -16,19 +17,29 @@ void Button::Init(HDC _hdc, POINT _pt, std::function<void()> _callBackFunc, std:
 	m_strText = _Text;
 }
 
-void Button::OnButtonClick()
+void Button::SetActivate()
 {
-	m_callBackFunc();
-}
-
-bool Button::isClicked(POINT pt)
-{
-	return PtInRect(&m_rect, pt);
+	m_bActivate = !m_bActivate;
 }
 
 void Button::Draw()
 {
+	if (m_bActivate)
+		GDIManager::GetInstance().SetColor(m_hdc, COLOR::RED);
+	else
+		GDIManager::GetInstance().SetColor(m_hdc, COLOR::BLACK);
+
 	Rectangle(m_hdc, m_rect.left, m_rect.top, m_rect.right, m_rect.bottom);
 	SetTextAlign(m_hdc, TA_CENTER);
 	TextOut(m_hdc, (m_rect.left + m_rect.right) / 2, (m_rect.top + m_rect.bottom) / 2, m_strText.c_str(), m_strText.length());
+}
+
+bool Button::IsClicked(POINT pt)
+{
+	if (PtInRect(&m_rect, pt))
+	{
+		m_callBackFunc();
+		return true;
+	}
+	return false;
 }
