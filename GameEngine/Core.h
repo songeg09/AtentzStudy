@@ -1,7 +1,7 @@
 #pragma once
 #include "pch.h"
-#include "Card.h"
 class Card;
+
 class Core
 {
 	SINGLETON(Core)

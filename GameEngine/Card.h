@@ -4,6 +4,7 @@ class Card
 {
 private:
 	Vector2 m_vec2Position;
+	RECT m_rectClickArea;
 	Texture* m_pTexture;
 public:
 	Card();

@@ -37,6 +37,8 @@ void Core::Init(HWND _hWnd, Vector2 _size)
 		m_WindowSize.x, m_WindowSize.y, SWP_SHOWWINDOW);
 	m_hDC = GetDC(m_hWnd);
 
+	PathManager::GetInstance()->Init();
+
 	Texture* parrTexture[(int)BOARD_SIZE::HEIGHT * (int)BOARD_SIZE::WIDTH];
 	parrTexture[0] = ResourceManager::GetInstance()->LoadTexture(L"루피", L"luffy.bmp");
 	parrTexture[1] = ResourceManager::GetInstance()->LoadTexture(L"조로", L"zoro.bmp");

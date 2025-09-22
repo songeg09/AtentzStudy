@@ -23,6 +23,10 @@ void Card::Init(Vector2 _vec2Position, Texture* _pTexture)
 {
 	m_vec2Position = _vec2Position;
 	m_pTexture = _pTexture;
+	m_rectClickArea.left = GetPosition().x - m_pTexture->GetWidth() / 2;
+	m_rectClickArea.top = GetPosition().y - m_pTexture->GetHeight() / 2;
+	m_rectClickArea.right = m_rectClickArea.left + m_pTexture->GetWidth();
+	m_rectClickArea.bottom = m_rectClickArea.top + m_pTexture->GetHeight();
 }
 
 void Card::Render(HDC _hDC)
