@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{e14ee947-6d9c-41f6-b262-20d3188e5143}</ProjectGuid>
-    <RootNamespace>PeekMessage</RootNamespace>
+    <ProjectGuid>{0578b9fa-3ff0-449c-a137-c1d3058c6272}</ProjectGuid>
+    <RootNamespace>GameEngine</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -123,34 +123,35 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Button.h" />
+    <ClInclude Include="Card.h" />
+    <ClInclude Include="ConstValue.h" />
+    <ClInclude Include="Core.h" />
+    <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="Circle.h" />
-    <ClInclude Include="GDIManager.h" />
-    <ClInclude Include="Mecro.h" />
-    <ClInclude Include="Qudrangle.h" />
-    <ClInclude Include="PeekMessage.h" />
-    <ClInclude Include="Shape.h" />
-    <ClInclude Include="ShapeManager.h" />
+    <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="GameResource.h" />
+    <ClInclude Include="PathManager.h" />
+    <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="struct.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="Triangle.h" />
+    <ClInclude Include="Texture.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Button.cpp" />
-    <ClCompile Include="Circle.cpp" />
-    <ClCompile Include="GDIManager.cpp" />
-    <ClCompile Include="Qudrangle.cpp" />
-    <ClCompile Include="PeekMessage.cpp" />
-    <ClCompile Include="Shape.cpp" />
-    <ClCompile Include="ShapeManager.cpp" />
-    <ClCompile Include="Triangle.cpp" />
+    <ClCompile Include="Card.cpp" />
+    <ClCompile Include="Core.cpp" />
+    <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="GameResource.cpp" />
+    <ClCompile Include="PathManager.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="PeekMessage.rc" />
+    <ResourceCompile Include="GameEngine.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="PeekMessage.ico" />
+    <Image Include="GameEngine.ico" />
     <Image Include="small.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
