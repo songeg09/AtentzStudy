@@ -1,44 +1,57 @@
 #include "pch.h"
 #include "ResourceManager.h"
-#include "Texture.h"
 #include "PathManager.h"
+#include "Texture.h"
+
 
 ResourceManager::ResourceManager()
 {
-	LoadTexture(L"루피", L"luffy.bmp");
-	LoadTexture(L"조로", L"zoro.bmp");
-	LoadTexture(L"나미", L"nami.bmp");
-	LoadTexture(L"우솝", L"usopp.bmp");
-	LoadTexture(L"상디", L"sanji.bmp");
-	LoadTexture(L"니코로빈", L"nico_robin.bmp");
-	LoadTexture(L"비비", L"vivi.bmp");
-	LoadTexture(L"샹크스", L"shanks.bmp");
-	LoadTexture(L"에이스", L"ace.bmp");
-	LoadTexture(L"버기", L"buggy.bmp");
-	LoadTexture(L"골드로저", L"gold_roger.bmp");
-	LoadTexture(L"쵸파", L"chopper.bmp");
 }
 
 ResourceManager::~ResourceManager()
 {
 	for (std::map<std::wstring, Texture*>::iterator iter = m_MapTexture.begin(); iter != m_MapTexture.end(); iter++)
-	{
 		delete iter->second;
+}
+
+std::wstring ResourceManager::GetTextureFileName(TEXTURE_TYPE _eTextureType)
+{
+	switch (_eTextureType)
+	{
+	case  TEXTURE_TYPE::BACK_GROUND:	return L"back.bmp";
+	case 	TEXTURE_TYPE::BLOCK_0:			return L"block_0.bmp";
+	case 	TEXTURE_TYPE::BLOCK_1:			return L"block_1.bmp";
+	case 	TEXTURE_TYPE::BLOCK_2:			return L"block_2.bmp";
+	case 	TEXTURE_TYPE::BLOCK_3:			return L"block_3.bmp";
+	case 	TEXTURE_TYPE::BLOCK_4:			return L"block_4.bmp";
+	case 	TEXTURE_TYPE::BLOCK_5:			return L"block_5.bmp";
+	case 	TEXTURE_TYPE::BLOCK_6:			return L"block_6.bmp";
+	case 	TEXTURE_TYPE::BLOCK_7:			return L"block_7.bmp";
+	case 	TEXTURE_TYPE::BLOCK_8:			return L"block_8.bmp";
+	case 	TEXTURE_TYPE::BLOCK_MINE:		return L"mine.bmp";
+	case 	TEXTURE_TYPE::BLOCK_FLAG:		return L"flag.bmp";
+	case 	TEXTURE_TYPE::BLOCK_CLOSE:		return L"block.bmp";
+	default: return L"";
 	}
 }
 
-Texture* ResourceManager::LoadTexture(const std::wstring& _strKey, const std::wstring& _strRelativePath)
+Texture* ResourceManager::LoadTexture(TEXTURE_TYPE _eTextureType)
 {
-	std::wstring path = PathManager::GetInstance()->GetContentPath() + L"texture\\" + _strRelativePath;
-	Texture* pTexture = FindTexture(_strKey, path);
+	std::wstring strFileName = GetTextureFileName(_eTextureType);
+	assert(strFileName.length() != 0);
+	std::wstring strKey = strFileName.substr(0, strFileName.length() - 4);
+
+	Texture* pTexture = FindTexture(strKey, strFileName);
 	if (pTexture == nullptr)
 	{
 		pTexture = new Texture;
-		pTexture->Load(path);
-		pTexture->SetKey(_strKey);
-		m_MapTexture.insert(make_pair(_strKey, pTexture));
+		std::wstring strPath = PathManager::GetInstance()->GetContentPath();
+		strPath += L"texture\\" + strFileName;
+		pTexture->Load(strPath);
+		pTexture->SetKey(strKey);
+		pTexture->SetRelativePath(strFileName);
+		m_MapTexture.insert(make_pair(strKey, pTexture));
 	}
-
 	return pTexture;
 }
 

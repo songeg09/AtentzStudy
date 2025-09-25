@@ -13,6 +13,6 @@
 
 enum class BOARD_SIZE
 {
-	WIDTH = 4,
-	HEIGHT = 3,
+	WIDTH = 6,
+	HEIGHT = 4,
 };

@@ -20,9 +20,6 @@
     <Filter Include="Engine\Object">
       <UniqueIdentifier>{64738209-8009-4e03-b504-320fe9352bcb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Object\Card">
-      <UniqueIdentifier>{b9374300-2f7d-43fb-9efd-55551093e2a8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Manager">
       <UniqueIdentifier>{0e0cc8c3-ab4b-46ab-96d1-457270f61eed}</UniqueIdentifier>
     </Filter>
@@ -37,6 +34,12 @@
     </Filter>
     <Filter Include="Engine\Manager\PathManager">
       <UniqueIdentifier>{b8831711-17e7-4657-94be-9c9c2c7cbd32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Manager\InputManager">
+      <UniqueIdentifier>{26c74196-419c-4ed1-9c24-22f9f7c32936}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Object\Block">
+      <UniqueIdentifier>{ee3dbf43-4e45-4ef7-a054-50f982683cb1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -59,10 +62,7 @@
     <ClInclude Include="define.h">
       <Filter>Engine\Header</Filter>
     </ClInclude>
-    <ClInclude Include="Card.h">
-      <Filter>Engine\Object\Card</Filter>
-    </ClInclude>
-    <ClInclude Include="ConstValue.h">
+    <ClInclude Include="const.h">
       <Filter>Engine\Header</Filter>
     </ClInclude>
     <ClInclude Include="struct.h">
@@ -79,6 +79,15 @@
     </ClInclude>
     <ClInclude Include="PathManager.h">
       <Filter>Engine\Manager\PathManager</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Engine\Manager\InputManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Engine\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>Engine\Object\Block</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -99,9 +108,6 @@
     <ClCompile Include="Core.cpp">
       <Filter>Engine\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Card.cpp">
-      <Filter>Engine\Object\Card</Filter>
-    </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Engine\Manager\ResourceManager</Filter>
     </ClCompile>
@@ -113,6 +119,15 @@
     </ClCompile>
     <ClCompile Include="PathManager.cpp">
       <Filter>Engine\Manager\PathManager</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Engine\Manager\InputManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Engine\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Block.cpp">
+      <Filter>Engine\Object\Block</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

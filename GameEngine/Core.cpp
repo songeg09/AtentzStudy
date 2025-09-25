@@ -1,71 +1,71 @@
-#include "pch.h"
+//#include "Block.h"
+#include "Block.h"
 #include "Core.h"
-#include "Card.h"
-#include "Texture.h"
-#include "ResourceManager.h"
+#include "InputManager.h"
 #include "PathManager.h"
+#include "ResourceManager.h"
+#include "Texture.h"
+
 
 Core::Core()
 {
 	m_hDC = nullptr;
 	m_hWnd = nullptr;
-	m_ScreenCenterPosition = {};
+	m_WindowStartPosition = {};
 	m_WindowSize = {};
+	m_pBackGroundTexture = nullptr;
+	m_hBackBoardBitMap = nullptr;
+	m_hBackDC = nullptr;
 }
 
 Core::~Core()
 {
 	ReleaseDC(m_hWnd, m_hDC);
-	for (int y = 0; y < (int)BOARD_SIZE::HEIGHT; ++y)
-	{
-		for (int x = 0; x < (int)BOARD_SIZE::WIDTH; ++x)
-		{
-			delete m_parrBoard[y][x];
-		}
-	}
 }
 
-void Core::Init(HWND _hWnd, Vector2 _size)
+void Core::Init(HWND _hWnd)
 {
+	srand(time(NULL));
 	m_hWnd = _hWnd;
-	m_WindowSize = _size;
-
-	m_ScreenCenterPosition = Vector2{ (GetSystemMetrics(SM_CXSCREEN) / 2) - (m_WindowSize.x / 2),
-		(GetSystemMetrics(SM_CYSCREEN) / 2) - (m_WindowSize.y / 2) };
-
-	SetWindowPos(m_hWnd, nullptr, m_ScreenCenterPosition.x, m_ScreenCenterPosition.y,
-		m_WindowSize.x, m_WindowSize.y, SWP_SHOWWINDOW);
 	m_hDC = GetDC(m_hWnd);
 
+	InputManager::GetInstance()->Init();
 	PathManager::GetInstance()->Init();
 
-	Texture* parrTexture[(int)BOARD_SIZE::HEIGHT * (int)BOARD_SIZE::WIDTH];
-	parrTexture[0] = ResourceManager::GetInstance()->LoadTexture(L"루피", L"luffy.bmp");
-	parrTexture[1] = ResourceManager::GetInstance()->LoadTexture(L"조로", L"zoro.bmp");
-	parrTexture[2] = ResourceManager::GetInstance()->LoadTexture(L"나미", L"nami.bmp");
-	parrTexture[3] = ResourceManager::GetInstance()->LoadTexture(L"우솝", L"usopp.bmp");
-	parrTexture[4] = ResourceManager::GetInstance()->LoadTexture(L"상디", L"sanji.bmp");
-	parrTexture[5] = ResourceManager::GetInstance()->LoadTexture(L"니코로빈", L"nico_robin.bmp");
-	parrTexture[6] = ResourceManager::GetInstance()->LoadTexture(L"비비", L"vivi.bmp");
-	parrTexture[7] = ResourceManager::GetInstance()->LoadTexture(L"샹크스", L"shanks.bmp");
-	parrTexture[8] = ResourceManager::GetInstance()->LoadTexture(L"에이스", L"ace.bmp");
-	parrTexture[9] = ResourceManager::GetInstance()->LoadTexture(L"버기", L"buggy.bmp");
-	parrTexture[10] = ResourceManager::GetInstance()->LoadTexture(L"골드로저", L"gold_roger.bmp");
-	parrTexture[11] = ResourceManager::GetInstance()->LoadTexture(L"쵸파", L"chopper.bmp");
+	InputManager::GetInstance()->RegistKey(VK_LBUTTON);
+	InputManager::GetInstance()->RegistKey(VK_RBUTTON);
+	m_pBackGroundTexture = ResourceManager::GetInstance()->LoadTexture(TEXTURE_TYPE::BACK_GROUND);
+	m_WindowSize = Vector2{ (float)m_pBackGroundTexture->GetWidth(),(float)m_pBackGroundTexture->GetHeight() };
+	m_WindowStartPosition = Vector2{ (GetSystemMetrics(SM_CXSCREEN) / 2) - (m_WindowSize.x / 2),
+												(GetSystemMetrics(SM_CYSCREEN) / 2) - (m_WindowSize.y / 2) };
+	SetWindowPos(m_hWnd, nullptr, m_WindowStartPosition.x, m_WindowStartPosition.y,
+		m_WindowSize.x + 15, m_WindowSize.y + 60, SWP_SHOWWINDOW);
 
-	int iTextureIndex = 0;
-	for (int y = 0; y < (int)BOARD_SIZE::HEIGHT; ++y)
+	m_hBackBoardBitMap = CreateCompatibleBitmap(m_hDC, m_WindowSize.x, m_WindowSize.y);
+	m_hBackDC = CreateCompatibleDC(m_hDC);
+	HBITMAP hOldBitMap = (HBITMAP)SelectObject(m_hBackDC, m_hBackBoardBitMap);
+	DeleteObject(hOldBitMap);
+
+	
+	const int BLOCK_HEIGHT = ResourceManager::GetInstance()->LoadTexture(TEXTURE_TYPE::BLOCK_CLOSE)->GetHeight();
+	const int BLOCK_WIDTH = ResourceManager::GetInstance()->LoadTexture(TEXTURE_TYPE::BLOCK_CLOSE)->GetHeight();
+	
+	int numOfBombs = 0;
+	for (int i = 0; i < BOARD_HEIGHT; ++i)
 	{
-		for (int x = 0; x < (int)BOARD_SIZE::WIDTH; ++x)
+		for (int j = 0; j < BOARD_WIDTH; ++j)
 		{
-			Card* card = new Card;
-			Vector2 position;
-			position.x = CARD_START_POSITION.x + (x * parrTexture[iTextureIndex]->GetWidth()) + (x * CARD_MARGIN.x);
-			position.y = CARD_START_POSITION.y + (y * parrTexture[iTextureIndex]->GetHeight()) + (y * CARD_MARGIN.y);
-			card->Init(position, parrTexture[iTextureIndex++]);
-			m_parrBoard[y][x] = card;
+			if (numOfBombs < NUM_OF_BOMBS)
+			{
+				m_blockBoard[i][j] = std::make_shared<Block>(true, Vector2(BOARD_START_X + j* BLOCK_WIDTH, BOARD_START_Y + i * BLOCK_HEIGHT));
+				numOfBombs++;
+			}
+			else
+				m_blockBoard[i][j] = std::make_shared<Block>(false, Vector2(BOARD_START_X + j * BLOCK_WIDTH, BOARD_START_Y + i * BLOCK_HEIGHT));
 		}
 	}
+
+	m_GameState = GAMESTATE::PREGAME;
 }
 
 void Core::GameLoop()
@@ -74,28 +74,108 @@ void Core::GameLoop()
 	Render();
 }
 
-POINT Core::GetMousePosition()
+
+void Core::UpdateBlocks()
 {
-	POINT ptMouse;
-	GetCursorPos(&ptMouse);
-	ScreenToClient(m_hWnd, &ptMouse);
-	return ptMouse;
+	for (int i = 0; i < BOARD_HEIGHT; ++i)
+	{
+		for (int j = 0; j < BOARD_WIDTH; ++j)
+		{
+			m_blockBoard[i][j]->Update();
+		}
+	}
+}
+
+void Core::ChangeGameState(GAMESTATE _gameState)
+{
+	m_GameState = _gameState;
+}
+
+void Core::Shuffle()
+{
+	int x1, y1;
+	int x2, y2;
+	for (int i = 0; i < 480; ++i)
+	{
+		x1 = rand() % BOARD_WIDTH;
+		y1 = rand() % BOARD_HEIGHT;
+
+		x2 = rand() % BOARD_WIDTH;
+		y2 = rand() % BOARD_HEIGHT;
+
+		
+		std::shared_ptr<Block> temp = m_blockBoard[y1][x1];
+		m_blockBoard[y1][x1] = m_blockBoard[y2][x2];
+		m_blockBoard[y2][x2] = temp;
+	}
+}
+
+void Core::SetBlocks()
+{
+	for (int i = 0; i < BOARD_HEIGHT; ++i)
+	{
+		for (int j = 0; j < BOARD_WIDTH; ++j)
+		{
+			m_blockBoard[i][j]->Close();
+
+			if (m_blockBoard[i][j]->IsBomb()) continue;
+			m_blockBoard[i][j]->SetBlock(GetAdjBombs(Vector2(j,i)));
+		}
+	}
+}
+
+int Core::GetAdjBombs(Vector2 _pos)
+{
+	int Result = 0;
+	
+	Vector2 AdjPos;
+	for (const Vector2& Dir : Directions)
+	{
+		AdjPos = _pos + Dir;
+		if (PositionOutOfBounds(AdjPos)) continue;
+		if (m_blockBoard[(int)AdjPos.y][(int)AdjPos.x]->IsBomb())
+			Result++;
+	}
+
+	return Result;
+}
+
+bool Core::PositionOutOfBounds(const Vector2& _pos)
+{
+	return 0 <= _pos.x && _pos.x < BOARD_WIDTH && 0 <= _pos.y && _pos.y < BOARD_HEIGHT;
 }
 
 void Core::Update()
 {
-	for (int y = 0; y < (int)BOARD_SIZE::HEIGHT; ++y)
+	switch (m_GameState)
 	{
-		for (int x = 0; x < (int)BOARD_SIZE::WIDTH; ++x)
-			m_parrBoard[y][x]->Update();
+	case GAMESTATE::PREGAME:
+		Shuffle();
+		SetBlocks();
+		ChangeGameState(GAMESTATE::PLAY);
+		break;
+	case GAMESTATE::PLAY:
+		InputManager::GetInstance()->Update();
+		break;
+	case GAMESTATE::WIN:
+		break;
+	case GAMESTATE::LOSE:
+		break;
 	}
+
 }
 
 void Core::Render()
 {
-	for (int y = 0; y < (int)BOARD_SIZE::HEIGHT; ++y)
+	BitBlt(m_hBackDC, 0, 0, m_pBackGroundTexture->GetWidth(), m_pBackGroundTexture->GetHeight(), m_pBackGroundTexture->GetDC(), 0, 0, SRCCOPY);
+	
+	/*for (int i = 0; i < BOARD_HEIGHT; ++i)
 	{
-		for (int x = 0; x < (int)BOARD_SIZE::WIDTH; ++x)
-			m_parrBoard[y][x]->Render(m_hDC);
-	}
+		for (int j = 0; j < BOARD_WIDTH; ++j)
+		{
+			m_blockBoard[i][j]->Render(m_hBackDC);
+		}
+	}*/
+
+	BitBlt(m_hDC, 0, 0, m_WindowSize.x, m_WindowSize.y, m_hBackDC, 0, 0, SRCCOPY);
 }
