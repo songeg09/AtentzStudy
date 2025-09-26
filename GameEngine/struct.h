@@ -2,14 +2,14 @@
 
 struct Vector2
 {
-	float x;
-	float y;
+	int x;
+	int y;
 	Vector2()
 	{
 		x = 0.0f;
 		y = 0.0f;
 	}
-	Vector2(float _x, float _y)
+	Vector2(int _x, int _y)
 	{
 		x = _x;
 		y = _y;

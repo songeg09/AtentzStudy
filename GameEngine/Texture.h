@@ -1,5 +1,7 @@
 #pragma once
 #include"GameResource.h"
+#include "pch.h"
+
 class Texture : public GameResource
 {
 private:

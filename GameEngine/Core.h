@@ -1,7 +1,7 @@
 #pragma once
 #include"pch.h"
 
-const Vector2 Directions[8] = {
+const Vector2 Directions8[8] = {
 	{0,-1},
 	{1,-1},
 	{1,0},
@@ -9,7 +9,7 @@ const Vector2 Directions[8] = {
 	{0,1},
 	{-1,1},
 	{ -1,0},
-	{-1,1}
+	{-1,-1}
 };
 
 enum class GAMESTATE

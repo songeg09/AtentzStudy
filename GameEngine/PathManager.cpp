@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "PathManager.h"
 
 PathManager::PathManager()

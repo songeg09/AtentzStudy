@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "InputManager.h"
 #include "Core.h"
 
@@ -17,10 +16,13 @@ void InputManager::Init()
 void InputManager::Update()
 {
 	HWND hMainWnd = Core::GetInstance()->GethWnd();
+	GetCursorPos(&m_ptCursor);
+	ClientToScreen(hMainWnd, &m_ptCursor);
+
 	//포커싱된 윈도우 핸들값
 	HWND hWnd = GetFocus();
 	if (hWnd == hMainWnd)
-	{
+	{	
 		for (std::map<int, KeyInfo>::iterator iter = m_mapKeyStatus.begin(); iter != m_mapKeyStatus.end(); ++iter)
 		{
 			if (GetAsyncKeyState(iter->first) & 0x8000)

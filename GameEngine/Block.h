@@ -1,8 +1,7 @@
 #pragma once
-#include "Object.h"
+#include "pch.h"
 
 class Texture;
-
 class Block
 {
 private:
@@ -19,14 +18,19 @@ public:
 	Block(bool _IsBomb, Vector2 _pos);
 	~Block();
 
-	void Update();
+	void Update(const POINT& pt);
 	void Render(HDC _hDC);
-
-	bool IsBomb() { return m_bIsBomb; }
-	void SetBlock(int _AdjBombs);
+	
+	void SetupBlock(int _AdjBombs);
+	void SetClickArea();
 
 	void Close() { m_bIsOpen = false; }
 	void Open() { m_bIsOpen = true; }
+
+	// Getters & Setters
+	bool IsBomb() { return m_bIsBomb; }
+	Vector2 GetPosition() { return m_vec2Position; }
+	void SetPosition(const Vector2 _vec2) { m_vec2Position = _vec2; }
 
 };
 

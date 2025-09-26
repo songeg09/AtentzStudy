@@ -1,6 +1,5 @@
-//#include "Block.h"
-#include "Block.h"
 #include "Core.h"
+#include "Block.h"
 #include "InputManager.h"
 #include "PathManager.h"
 #include "ResourceManager.h"
@@ -35,7 +34,7 @@ void Core::Init(HWND _hWnd)
 	InputManager::GetInstance()->RegistKey(VK_LBUTTON);
 	InputManager::GetInstance()->RegistKey(VK_RBUTTON);
 	m_pBackGroundTexture = ResourceManager::GetInstance()->LoadTexture(TEXTURE_TYPE::BACK_GROUND);
-	m_WindowSize = Vector2{ (float)m_pBackGroundTexture->GetWidth(),(float)m_pBackGroundTexture->GetHeight() };
+	m_WindowSize = Vector2{ m_pBackGroundTexture->GetWidth(),m_pBackGroundTexture->GetHeight() };
 	m_WindowStartPosition = Vector2{ (GetSystemMetrics(SM_CXSCREEN) / 2) - (m_WindowSize.x / 2),
 												(GetSystemMetrics(SM_CYSCREEN) / 2) - (m_WindowSize.y / 2) };
 	SetWindowPos(m_hWnd, nullptr, m_WindowStartPosition.x, m_WindowStartPosition.y,
@@ -47,21 +46,22 @@ void Core::Init(HWND _hWnd)
 	DeleteObject(hOldBitMap);
 
 	
+	// Blocks ¼¼ÆÃ
 	const int BLOCK_HEIGHT = ResourceManager::GetInstance()->LoadTexture(TEXTURE_TYPE::BLOCK_CLOSE)->GetHeight();
 	const int BLOCK_WIDTH = ResourceManager::GetInstance()->LoadTexture(TEXTURE_TYPE::BLOCK_CLOSE)->GetHeight();
 	
 	int numOfBombs = 0;
-	for (int i = 0; i < BOARD_HEIGHT; ++i)
+	for (int  y= 0; y < BOARD_HEIGHT; ++y)
 	{
-		for (int j = 0; j < BOARD_WIDTH; ++j)
+		for (int x = 0; x < BOARD_WIDTH; ++x)
 		{
 			if (numOfBombs < NUM_OF_BOMBS)
 			{
-				m_blockBoard[i][j] = std::make_shared<Block>(true, Vector2(BOARD_START_X + j* BLOCK_WIDTH, BOARD_START_Y + i * BLOCK_HEIGHT));
+				m_blockBoard[y][x] = std::make_shared<Block>(true, Vector2(BOARD_START_X + x* BLOCK_WIDTH, BOARD_START_Y + y * BLOCK_HEIGHT));
 				numOfBombs++;
 			}
 			else
-				m_blockBoard[i][j] = std::make_shared<Block>(false, Vector2(BOARD_START_X + j * BLOCK_WIDTH, BOARD_START_Y + i * BLOCK_HEIGHT));
+				m_blockBoard[y][x] = std::make_shared<Block>(false, Vector2(BOARD_START_X + x * BLOCK_WIDTH, BOARD_START_Y + y * BLOCK_HEIGHT));
 		}
 	}
 
@@ -77,11 +77,11 @@ void Core::GameLoop()
 
 void Core::UpdateBlocks()
 {
-	for (int i = 0; i < BOARD_HEIGHT; ++i)
+	for (int  y = 0; y < BOARD_HEIGHT; ++y)
 	{
-		for (int j = 0; j < BOARD_WIDTH; ++j)
+		for (int x = 0; x < BOARD_WIDTH; ++x)
 		{
-			m_blockBoard[i][j]->Update();
+			m_blockBoard[y][x]->Update(InputManager::GetInstance()->GetCursorPosition());
 		}
 	}
 }
@@ -107,19 +107,23 @@ void Core::Shuffle()
 		std::shared_ptr<Block> temp = m_blockBoard[y1][x1];
 		m_blockBoard[y1][x1] = m_blockBoard[y2][x2];
 		m_blockBoard[y2][x2] = temp;
+
+		Vector2 tempVec2 = m_blockBoard[y1][x1]->GetPosition();
+		m_blockBoard[y1][x1]->SetPosition(m_blockBoard[y2][x2]->GetPosition());
+		m_blockBoard[y2][x2]->SetPosition(tempVec2);
 	}
 }
 
 void Core::SetBlocks()
 {
-	for (int i = 0; i < BOARD_HEIGHT; ++i)
+	for (int y = 0; y < BOARD_HEIGHT; ++y)
 	{
-		for (int j = 0; j < BOARD_WIDTH; ++j)
+		for (int x = 0; x < BOARD_WIDTH; ++x)
 		{
-			m_blockBoard[i][j]->Close();
+			m_blockBoard[y][x]->Close();
 
-			if (m_blockBoard[i][j]->IsBomb()) continue;
-			m_blockBoard[i][j]->SetBlock(GetAdjBombs(Vector2(j,i)));
+			if (m_blockBoard[y][x]->IsBomb()) continue;
+			m_blockBoard[y][x]->SetupBlock(GetAdjBombs(Vector2(x,y)));
 		}
 	}
 }
@@ -129,11 +133,11 @@ int Core::GetAdjBombs(Vector2 _pos)
 	int Result = 0;
 	
 	Vector2 AdjPos;
-	for (const Vector2& Dir : Directions)
+	for (const Vector2& Dir : Directions8)
 	{
 		AdjPos = _pos + Dir;
 		if (PositionOutOfBounds(AdjPos)) continue;
-		if (m_blockBoard[(int)AdjPos.y][(int)AdjPos.x]->IsBomb())
+		if (m_blockBoard[AdjPos.y][AdjPos.x]->IsBomb())
 			Result++;
 	}
 
@@ -142,7 +146,7 @@ int Core::GetAdjBombs(Vector2 _pos)
 
 bool Core::PositionOutOfBounds(const Vector2& _pos)
 {
-	return 0 <= _pos.x && _pos.x < BOARD_WIDTH && 0 <= _pos.y && _pos.y < BOARD_HEIGHT;
+	return !(0 <= _pos.x && _pos.x < BOARD_WIDTH && 0 <= _pos.y && _pos.y < BOARD_HEIGHT);
 }
 
 void Core::Update()
@@ -156,6 +160,7 @@ void Core::Update()
 		break;
 	case GAMESTATE::PLAY:
 		InputManager::GetInstance()->Update();
+		UpdateBlocks();
 		break;
 	case GAMESTATE::WIN:
 		break;
@@ -169,13 +174,13 @@ void Core::Render()
 {
 	BitBlt(m_hBackDC, 0, 0, m_pBackGroundTexture->GetWidth(), m_pBackGroundTexture->GetHeight(), m_pBackGroundTexture->GetDC(), 0, 0, SRCCOPY);
 	
-	/*for (int i = 0; i < BOARD_HEIGHT; ++i)
+	for (int y = 0; y < BOARD_HEIGHT; ++y)
 	{
-		for (int j = 0; j < BOARD_WIDTH; ++j)
+		for (int x = 0; x < BOARD_WIDTH; ++x)
 		{
-			m_blockBoard[i][j]->Render(m_hBackDC);
+			m_blockBoard[y][x]->Render(m_hBackDC);
 		}
-	}*/
+	}
 
 	BitBlt(m_hDC, 0, 0, m_WindowSize.x, m_WindowSize.y, m_hBackDC, 0, 0, SRCCOPY);
 }

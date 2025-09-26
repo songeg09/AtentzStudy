@@ -1,22 +1,29 @@
 #include "Block.h"
 #include "ResourceManager.h"
 #include "Texture.h"
+#include "Core.h"
+
 
 Block::Block(bool _IsBomb, Vector2 _pos)
 	:m_bIsBomb(_IsBomb), m_iAdjBombs(0), m_bIsOpen(false), m_bIsFlagged(false),m_vec2Position(_pos)
 {
-	if(m_bIsBomb)
+	m_ClickArea = {};
+	m_pTexture = nullptr;
+	if (m_bIsBomb)
+	{
 		m_pTexture = ResourceManager::GetInstance()->LoadTexture(TEXTURE_TYPE::BLOCK_MINE);
-
-
+		SetClickArea();
+	}
 }
 
 Block::~Block()
 {
 }
 
-void Block::Update()
+void Block::Update(const POINT& pt)
 {
+	if(PtInRect(&m_ClickArea, pt))
+		m_bIsOpen = true;
 }
 
 void Block::Render(HDC _hDC)
@@ -33,7 +40,7 @@ void Block::Render(HDC _hDC)
 
 }
 
-void Block::SetBlock(int _AdjBombs)
+void Block::SetupBlock(int _AdjBombs)
 {
 	m_iAdjBombs = _AdjBombs;
 	
@@ -67,4 +74,16 @@ void Block::SetBlock(int _AdjBombs)
 		m_pTexture = ResourceManager::GetInstance()->LoadTexture(TEXTURE_TYPE::BLOCK_8);
 		break;
 	}
+
+	SetClickArea();
+}
+
+void Block::SetClickArea()
+{
+	m_ClickArea = {
+		m_vec2Position.x - m_pTexture->GetWidth() / 2,
+		m_vec2Position.y - m_pTexture->GetHeight() / 2,
+		m_vec2Position.x + m_pTexture->GetWidth() / 2,
+		m_vec2Position.y + m_pTexture->GetHeight() / 2,
+	};
 }

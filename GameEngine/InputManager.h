@@ -1,4 +1,5 @@
 #pragma once
+#include "pch.h"
 
 enum class KEY_STATE
 {
@@ -24,10 +25,13 @@ class InputManager
 	SINGLETON(InputManager)
 private:
 	std::map<int, KeyInfo> m_mapKeyStatus;
+	POINT m_ptCursor;
+
 public:
 	void Init();
 	void Update();
 	void RegistKey(int _iKey);
 	KEY_STATE GetKeyState(int _iKey);
+	POINT GetCursorPosition() { return m_ptCursor; }
 };
 

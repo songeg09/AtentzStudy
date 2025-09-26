@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "ResourceManager.h"
 #include "PathManager.h"
 #include "Texture.h"

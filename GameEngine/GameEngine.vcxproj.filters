@@ -83,9 +83,6 @@
     <ClInclude Include="InputManager.h">
       <Filter>Engine\Manager\InputManager</Filter>
     </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>Engine\Object</Filter>
-    </ClInclude>
     <ClInclude Include="Block.h">
       <Filter>Engine\Object\Block</Filter>
     </ClInclude>
@@ -122,9 +119,6 @@
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>Engine\Manager\InputManager</Filter>
-    </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>Engine\Object</Filter>
     </ClCompile>
     <ClCompile Include="Block.cpp">
       <Filter>Engine\Object\Block</Filter>
