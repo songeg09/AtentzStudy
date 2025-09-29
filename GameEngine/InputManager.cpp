@@ -17,7 +17,7 @@ void InputManager::Update()
 {
 	HWND hMainWnd = Core::GetInstance()->GethWnd();
 	GetCursorPos(&m_ptCursor);
-	ClientToScreen(hMainWnd, &m_ptCursor);
+	ScreenToClient(hMainWnd, &m_ptCursor);
 
 	//포커싱된 윈도우 핸들값
 	HWND hWnd = GetFocus();

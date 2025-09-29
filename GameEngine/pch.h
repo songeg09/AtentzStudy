@@ -10,3 +10,5 @@
 #include<stdlib.h>
 #include<time.h>
 #include<memory>
+#include<queue>
+#include<functional>

@@ -1,7 +1,7 @@
 #pragma once
 #include"pch.h"
 
-const Vector2 Directions8[8] = {
+const Vector2 Directions[8] = {
 	{0,-1},
 	{1,-1},
 	{1,0},
@@ -32,6 +32,7 @@ private:
 	Vector2					m_WindowStartPosition;
 	Texture*				m_pBackGroundTexture;
 	GAMESTATE				m_GameState;
+	int						m_iNumOfFlags;
 
 	std::shared_ptr<Block> m_blockBoard[BOARD_HEIGHT][BOARD_WIDTH];
 
@@ -49,10 +50,15 @@ private:
 	void Render();
 
 	// 게임 관련 함수들
-	void ChangeGameState(GAMESTATE _gameState);
 	void Shuffle();
 	void SetBlocks();
 	int GetAdjBombs(const Vector2 _pos);
 	bool PositionOutOfBounds(const Vector2& _pos);
+	void RevealBombs();
+	void RevealAdjBlocks(const Vector2 _vec2);
+
+	bool WinCheck();
+	void HandleBlockClicked(const Vector2 _vec2);
+	void HandleBombClicked();
 };
 

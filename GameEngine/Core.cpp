@@ -31,8 +31,11 @@ void Core::Init(HWND _hWnd)
 	InputManager::GetInstance()->Init();
 	PathManager::GetInstance()->Init();
 
+	// 좌우 마우스 버튼 등록
 	InputManager::GetInstance()->RegistKey(VK_LBUTTON);
 	InputManager::GetInstance()->RegistKey(VK_RBUTTON);
+
+	// 윈도우 세팅
 	m_pBackGroundTexture = ResourceManager::GetInstance()->LoadTexture(TEXTURE_TYPE::BACK_GROUND);
 	m_WindowSize = Vector2{ m_pBackGroundTexture->GetWidth(),m_pBackGroundTexture->GetHeight() };
 	m_WindowStartPosition = Vector2{ (GetSystemMetrics(SM_CXSCREEN) / 2) - (m_WindowSize.x / 2),
@@ -40,6 +43,7 @@ void Core::Init(HWND _hWnd)
 	SetWindowPos(m_hWnd, nullptr, m_WindowStartPosition.x, m_WindowStartPosition.y,
 		m_WindowSize.x + 15, m_WindowSize.y + 60, SWP_SHOWWINDOW);
 
+	// 배경화면
 	m_hBackBoardBitMap = CreateCompatibleBitmap(m_hDC, m_WindowSize.x, m_WindowSize.y);
 	m_hBackDC = CreateCompatibleDC(m_hDC);
 	HBITMAP hOldBitMap = (HBITMAP)SelectObject(m_hBackDC, m_hBackBoardBitMap);
@@ -61,7 +65,9 @@ void Core::Init(HWND _hWnd)
 				numOfBombs++;
 			}
 			else
+			{
 				m_blockBoard[y][x] = std::make_shared<Block>(false, Vector2(BOARD_START_X + x * BLOCK_WIDTH, BOARD_START_Y + y * BLOCK_HEIGHT));
+			}
 		}
 	}
 
@@ -77,18 +83,43 @@ void Core::GameLoop()
 
 void Core::UpdateBlocks()
 {
+	POINT mouseCursor = InputManager::GetInstance()->GetCursorPosition();
 	for (int  y = 0; y < BOARD_HEIGHT; ++y)
 	{
 		for (int x = 0; x < BOARD_WIDTH; ++x)
 		{
-			m_blockBoard[y][x]->Update(InputManager::GetInstance()->GetCursorPosition());
+			if (m_blockBoard[y][x]->CursorOnBlock(mouseCursor))
+			{
+				// 좌클릭시
+				if (InputManager::GetInstance()->GetKeyState(VK_LBUTTON) == KEY_STATE::DOWN)
+				{
+					if (m_blockBoard[y][x]->GetState() == BLOCK_STATE::OPEN || m_blockBoard[y][x]->GetState() == BLOCK_STATE::FLAGGED) return;
+
+					if (m_blockBoard[y][x]->IsBomb())
+						HandleBombClicked();
+					else
+						HandleBlockClicked({x,y});
+				}
+				// 우클릭시
+				else if (InputManager::GetInstance()->GetKeyState(VK_RBUTTON) == KEY_STATE::DOWN)
+				{
+					if (m_blockBoard[y][x]->GetState() == BLOCK_STATE::OPEN) return;
+
+					if (m_blockBoard[y][x]->GetState() == BLOCK_STATE::FLAGGED)
+					{
+						m_blockBoard[y][x]->SetState(BLOCK_STATE::CLOSE);
+						m_iNumOfFlags++;
+					}	
+					else if (m_blockBoard[y][x]->GetState() == BLOCK_STATE::CLOSE)
+					{
+						if (m_iNumOfFlags <= 0) return;
+						m_blockBoard[y][x]->SetState(BLOCK_STATE::FLAGGED);
+						m_iNumOfFlags--;
+					}
+				}
+			}
 		}
 	}
-}
-
-void Core::ChangeGameState(GAMESTATE _gameState)
-{
-	m_GameState = _gameState;
 }
 
 void Core::Shuffle()
@@ -122,8 +153,12 @@ void Core::SetBlocks()
 		{
 			m_blockBoard[y][x]->Close();
 
-			if (m_blockBoard[y][x]->IsBomb()) continue;
-			m_blockBoard[y][x]->SetupBlock(GetAdjBombs(Vector2(x,y)));
+			// 폭탄일 경우 ClickArea만 수정
+			if (m_blockBoard[y][x]->IsBomb())
+				m_blockBoard[y][x]->SetClickArea();
+			// 폭탄이 아닌경우 주변 폭탄 갯수에 따라 텍스쳐도 수정
+			else
+				m_blockBoard[y][x]->SetupBlock(GetAdjBombs(Vector2(x,y)));
 		}
 	}
 }
@@ -133,7 +168,7 @@ int Core::GetAdjBombs(Vector2 _pos)
 	int Result = 0;
 	
 	Vector2 AdjPos;
-	for (const Vector2& Dir : Directions8)
+	for (const Vector2& Dir : Directions)
 	{
 		AdjPos = _pos + Dir;
 		if (PositionOutOfBounds(AdjPos)) continue;
@@ -149,22 +184,118 @@ bool Core::PositionOutOfBounds(const Vector2& _pos)
 	return !(0 <= _pos.x && _pos.x < BOARD_WIDTH && 0 <= _pos.y && _pos.y < BOARD_HEIGHT);
 }
 
+void Core::HandleBlockClicked(const Vector2 _vec2)
+{
+	RevealAdjBlocks(_vec2);
+	if (WinCheck())
+		m_GameState = GAMESTATE::WIN;
+}
+
+void Core::RevealAdjBlocks(const Vector2 _vec2)
+{
+	static std::queue<Vector2> adjBlocks;
+
+	m_blockBoard[_vec2.y][_vec2.x]->Open();
+	adjBlocks.push(_vec2);
+
+	Vector2 Current, Next;
+	while (!adjBlocks.empty())
+	{
+		Current = adjBlocks.front();
+		adjBlocks.pop();
+
+		if (m_blockBoard[Current.y][Current.x]->GetAdjBombs() > 0) continue;
+
+		for (int d = 0; d < 8; d += 2)
+		{
+			Next = Current + Directions[d];
+
+			if (PositionOutOfBounds(Next)) continue;
+			if (m_blockBoard[Next.y][Next.x]->GetState() == BLOCK_STATE::OPEN) continue;
+			if (m_blockBoard[Next.y][Next.x]->IsBomb()) continue;
+
+			if (m_blockBoard[Next.y][Next.x]->GetState() == BLOCK_STATE::FLAGGED)
+				m_iNumOfFlags++;
+			m_blockBoard[Next.y][Next.x]->SetState(BLOCK_STATE::OPEN);
+
+			if (m_blockBoard[Next.y][Next.x]->GetAdjBombs() == 0)
+				adjBlocks.push(Next);
+		}
+	}
+}
+
+bool Core::WinCheck()
+{
+	static constexpr int TotalBlock = (BOARD_WIDTH * BOARD_HEIGHT) - NUM_OF_BOMBS;
+
+	int Opened = 0;
+	for (int y = 0; y < BOARD_HEIGHT; ++y)
+	{
+		for (int x = 0; x < BOARD_WIDTH; ++x)
+		{
+			if (m_blockBoard[y][x]->GetState() == BLOCK_STATE::OPEN)
+				Opened++;
+		}
+	}
+
+	return Opened == TotalBlock;
+}
+
+
+
+void Core::HandleBombClicked()
+{
+	RevealBombs();
+	m_GameState = GAMESTATE::LOSE;
+}
+
+void Core::RevealBombs()
+{
+	for (int y = 0; y < BOARD_HEIGHT; ++y)
+	{
+		for (int x = 0; x < BOARD_WIDTH; ++x)
+		{
+			if (m_blockBoard[y][x]->IsBomb())
+				m_blockBoard[y][x]->Open();
+		}
+	}
+}
+
 void Core::Update()
 {
 	switch (m_GameState)
 	{
 	case GAMESTATE::PREGAME:
+		m_iNumOfFlags = NUM_OF_BOMBS;
 		Shuffle();
 		SetBlocks();
-		ChangeGameState(GAMESTATE::PLAY);
+		m_GameState = GAMESTATE::PLAY;
 		break;
 	case GAMESTATE::PLAY:
 		InputManager::GetInstance()->Update();
 		UpdateBlocks();
 		break;
 	case GAMESTATE::WIN:
+		if (MessageBox(m_hWnd, L"Play Again?", L"You Win!", MB_YESNO) == IDYES)
+		{
+			m_GameState = GAMESTATE::PREGAME;
+			break;
+		}
+		else
+		{
+			SendMessage(m_hWnd, WM_DESTROY, 0, 0);
+		}
 		break;
 	case GAMESTATE::LOSE:
+		if (MessageBox(m_hWnd, L"Play Again?", L"You Lose!", MB_YESNO) == IDYES)
+		{
+			m_GameState = GAMESTATE::PREGAME;
+			break;
+		}
+		else
+		{
+			SendMessage(m_hWnd, WM_DESTROY, 0, 0);
+		}
 		break;
 	}
 
@@ -181,6 +312,9 @@ void Core::Render()
 			m_blockBoard[y][x]->Render(m_hBackDC);
 		}
 	}
+	
+	std::wstring msg = std::to_wstring(m_iNumOfFlags);
+	TextOut(m_hBackDC, FLAGLEFT_START_X, FLAGLEFT_START_Y, msg.c_str(), msg.length());
 
 	BitBlt(m_hDC, 0, 0, m_WindowSize.x, m_WindowSize.y, m_hBackDC, 0, 0, SRCCOPY);
 }
