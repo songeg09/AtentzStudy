@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Default">
+      <UniqueIdentifier>{006139d8-79db-4bb0-a974-00b7c00fbec3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{d58b69e5-7477-44ce-b87e-ae9465b0edff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\01.Header">
+      <UniqueIdentifier>{bb00d3ea-c25c-42d5-af1b-084b05cfe0de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\02.Core">
+      <UniqueIdentifier>{505665c9-7792-4a14-9713-a0c2ad85da82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03.Manager">
+      <UniqueIdentifier>{5a4e30d7-23d4-483d-9995-43d3f5e026e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04.Object">
+      <UniqueIdentifier>{dfefe12b-74ee-4335-8087-5c54570ab104}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.Resource">
+      <UniqueIdentifier>{66fe54fb-164e-403e-979c-8957a05937cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03.Manager\InputManager">
+      <UniqueIdentifier>{d6b88447-e218-428f-969c-f3abdca1e320}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03.Manager\PathManager">
+      <UniqueIdentifier>{73fe45a2-84fd-42a3-9568-387b53b00711}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05.Resource\Texture">
+      <UniqueIdentifier>{070b46a3-7316-4614-a3ca-888952ac6018}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03.Manager\ResourceManager">
+      <UniqueIdentifier>{e2a963ca-e2b8-4f21-8c6d-82834ce76c4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04.Object\Block">
+      <UniqueIdentifier>{c7d5c78a-ad10-4736-ba68-90e6012fb321}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\06.Scene">
+      <UniqueIdentifier>{8382a845-bff1-493c-8847-6597deed499c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\06.Scene\SiChuanSheng">
+      <UniqueIdentifier>{4919582e-7d97-479f-952e-99d7db2f1930}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03.Manager\SceneManager">
+      <UniqueIdentifier>{420fae75-e2ec-4f4a-b517-3640cae17bcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04.Object\Load">
+      <UniqueIdentifier>{e4494b9b-e804-43bc-95e0-62f646fe4ae5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\06.Scene\Main">
+      <UniqueIdentifier>{40ec726d-8a77-42b0-93d7-53216f474553}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04.Object\Button">
+      <UniqueIdentifier>{453e9235-f5c0-4cde-be87-cd3958a05ede}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04.Object\TimerUI">
+      <UniqueIdentifier>{6ffb8daa-22bc-47c1-a17a-084d1175b5e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\06.Scene\MineSweeper">
+      <UniqueIdentifier>{29bf2271-e20b-438b-9687-0d2a202e5760}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04.Object\Mine">
+      <UniqueIdentifier>{3d377695-25d0-4c78-aec3-fc9688b7df58}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Resource.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="define.h">
+      <Filter>Engine\01.Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Core.h">
+      <Filter>Engine\02.Core</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Engine\03.Manager\InputManager</Filter>
+    </ClInclude>
+    <ClInclude Include="PathManager.h">
+      <Filter>Engine\03.Manager\PathManager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameResource.h">
+      <Filter>Engine\05.Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Engine\05.Resource\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Engine\03.Manager\ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="struct.h">
+      <Filter>Engine\01.Header</Filter>
+    </ClInclude>
+    <ClInclude Include="const.h">
+      <Filter>Engine\01.Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>Engine\04.Object\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Engine\04.Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Engine\06.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SiChuanShengScene.h">
+      <Filter>Engine\06.Scene\SiChuanSheng</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Engine\03.Manager\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Load.h">
+      <Filter>Engine\04.Object\Load</Filter>
+    </ClInclude>
+    <ClInclude Include="MainScene.h">
+      <Filter>Engine\06.Scene\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Engine\04.Object\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="TimerUI.h">
+      <Filter>Engine\04.Object\TimerUI</Filter>
+    </ClInclude>
+    <ClInclude Include="MineSweeperScene.h">
+      <Filter>Engine\06.Scene\MineSweeper</Filter>
+    </ClInclude>
+    <ClInclude Include="Mine.h">
+      <Filter>Engine\04.Object\Mine</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SiChuanSheng.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="SiChuanSheng.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="WinMain.cpp" />
+    <ClCompile Include="Core.cpp">
+      <Filter>Engine\02.Core</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Engine\03.Manager\InputManager</Filter>
+    </ClCompile>
+    <ClCompile Include="PathManager.cpp">
+      <Filter>Engine\03.Manager\PathManager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameResource.cpp">
+      <Filter>Engine\05.Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Engine\05.Resource\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Engine\03.Manager\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Block.cpp">
+      <Filter>Engine\04.Object\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Engine\04.Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Engine\06.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SiChuanShengScene.cpp">
+      <Filter>Engine\06.Scene\SiChuanSheng</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Engine\03.Manager\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Load.cpp">
+      <Filter>Engine\04.Object\Load</Filter>
+    </ClCompile>
+    <ClCompile Include="MainScene.cpp">
+      <Filter>Engine\06.Scene\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Engine\04.Object\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="TimerUI.cpp">
+      <Filter>Engine\04.Object\TimerUI</Filter>
+    </ClCompile>
+    <ClCompile Include="MineSweeperScene.cpp">
+      <Filter>Engine\06.Scene\MineSweeper</Filter>
+    </ClCompile>
+    <ClCompile Include="Mine.cpp">
+      <Filter>Engine\04.Object\Mine</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
