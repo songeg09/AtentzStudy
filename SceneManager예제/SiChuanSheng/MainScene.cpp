@@ -15,11 +15,13 @@ void MainScene::Init()
 {
 	m_arrObjects.resize(OBJECT_GROUP::END);
 	Scene::SetWindowSize(WINDOW_SIZE::WIDTH, WINDOW_SIZE::HEIGHT);
+
 	Button* button = new Button;
 	button->Init(Vector2{ 100,100 }, TEXTURE_TYPE::SICHUANSHENG_BUTTON,std::bind(&MainScene::StartSiChuanSheng,this));
 	Scene::AddObject(button,OBJECT_GROUP::BUTTON);
+
 	Button* button2 = new Button;
-	button2->Init(Vector2{ 500,100 }, TEXTURE_TYPE::MINESWEEPER_BUTTON);
+	button2->Init(Vector2{ 500,100 }, TEXTURE_TYPE::MINESWEEPER_BUTTON, std::bind(&MainScene::StartMineSweeper, this));
 	Scene::AddObject(button2, OBJECT_GROUP::BUTTON);
 }
 

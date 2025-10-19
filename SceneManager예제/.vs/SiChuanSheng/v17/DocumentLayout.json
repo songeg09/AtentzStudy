@@ -1,66 +1,30 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\",
+  "WorkspaceRootPath": "C:\\Users\\dhktj\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC1A1\uC740\uAD50 \uC790\uB8CC\\AtentzStudy\\SceneManager\uC608\uC81C\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\MineSweeperScene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|solutionrelative:SiChuanSheng\\MineSweeperScene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\MineSweeperScene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|C:\\Users\\dhktj\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC1A1\uC740\uAD50 \uC790\uB8CC\\AtentzStudy\\SceneManager\uC608\uC81C\\SiChuanSheng\\MineSweeperScene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|solutionrelative:SiChuanSheng\\MineSweeperScene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\SiChuanShengScene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|solutionrelative:SiChuanSheng\\SiChuanShengScene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\MainScene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|solutionrelative:SiChuanSheng\\MainScene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\SceneManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|C:\\Users\\dhktj\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC1A1\uC740\uAD50 \uC790\uB8CC\\AtentzStudy\\SceneManager\uC608\uC81C\\SiChuanSheng\\SceneManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|solutionrelative:SiChuanSheng\\SceneManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\Mine.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|solutionrelative:SiChuanSheng\\Mine.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|C:\\Users\\dhktj\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC1A1\uC740\uAD50 \uC790\uB8CC\\AtentzStudy\\SceneManager\uC608\uC81C\\SiChuanSheng\\MineSweeperScene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|solutionrelative:SiChuanSheng\\MineSweeperScene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\SiChuanShengScene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|solutionrelative:SiChuanSheng\\SiChuanShengScene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\MainScene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|solutionrelative:SiChuanSheng\\MainScene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\SceneManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|C:\\Users\\dhktj\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC1A1\uC740\uAD50 \uC790\uB8CC\\AtentzStudy\\SceneManager\uC608\uC81C\\SiChuanSheng\\SceneManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|solutionrelative:SiChuanSheng\\SceneManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\Mine.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|C:\\Users\\dhktj\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC1A1\uC740\uAD50 \uC790\uB8CC\\AtentzStudy\\SceneManager\uC608\uC81C\\SiChuanSheng\\Mine.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|solutionrelative:SiChuanSheng\\Mine.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|C:\\Users\\dhktj\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC1A1\uC740\uAD50 \uC790\uB8CC\\AtentzStudy\\SceneManager\uC608\uC81C\\SiChuanSheng\\Mine.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|solutionrelative:SiChuanSheng\\Mine.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\Block.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|solutionrelative:SiChuanSheng\\Block.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\Block.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|solutionrelative:SiChuanSheng\\Block.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\Scene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|solutionrelative:SiChuanSheng\\Scene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\ResourceManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|solutionrelative:SiChuanSheng\\ResourceManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\ResourceManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CD2B6F35-B90E-4759-A972-6F432891E845}|SiChuanSheng\\SiChuanSheng.vcxproj|solutionrelative:SiChuanSheng\\ResourceManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -69,208 +33,95 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 167,
+          "DockedWidth": 128,
           "SelectedChildIndex": 2,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "MainScene.h",
-              "DocumentMoniker": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\MainScene.h",
-              "RelativeDocumentMoniker": "SiChuanSheng\\MainScene.h",
-              "ToolTip": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\MainScene.h",
-              "RelativeToolTip": "SiChuanSheng\\MainScene.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-10-16T06:06:42.955Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Mine.h",
-              "DocumentMoniker": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\Mine.h",
-              "RelativeDocumentMoniker": "SiChuanSheng\\Mine.h",
-              "ToolTip": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\Mine.h",
-              "RelativeToolTip": "SiChuanSheng\\Mine.h",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-10-16T06:15:20.838Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MineSweeperScene.h",
-              "DocumentMoniker": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\MineSweeperScene.h",
-              "RelativeDocumentMoniker": "SiChuanSheng\\MineSweeperScene.h",
-              "ToolTip": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\MineSweeperScene.h",
-              "RelativeToolTip": "SiChuanSheng\\MineSweeperScene.h",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAADMAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-10-16T06:06:35.836Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "SceneManager.h",
-              "DocumentMoniker": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\SceneManager.h",
-              "RelativeDocumentMoniker": "SiChuanSheng\\SceneManager.h",
-              "ToolTip": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\SceneManager.h",
-              "RelativeToolTip": "SiChuanSheng\\SceneManager.h",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAB4AAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-10-16T06:05:56.634Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Scene.h",
-              "DocumentMoniker": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\Scene.h",
-              "RelativeDocumentMoniker": "SiChuanSheng\\Scene.h",
-              "ToolTip": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\Scene.h",
-              "RelativeToolTip": "SiChuanSheng\\Scene.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-10-16T06:12:45.601Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "ResourceManager.h",
-              "DocumentMoniker": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\ResourceManager.h",
-              "RelativeDocumentMoniker": "SiChuanSheng\\ResourceManager.h",
-              "ToolTip": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\ResourceManager.h",
-              "RelativeToolTip": "SiChuanSheng\\ResourceManager.h",
-              "ViewState": "AgIAAGMAAAAAAAAAAADwv3UAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-10-16T06:02:29.942Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 233,
-          "SelectedChildIndex": 1,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SiChuanShengScene.cpp",
-              "DocumentMoniker": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\SiChuanShengScene.cpp",
-              "RelativeDocumentMoniker": "SiChuanSheng\\SiChuanShengScene.cpp",
-              "ToolTip": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\SiChuanShengScene.cpp",
-              "RelativeToolTip": "SiChuanSheng\\SiChuanShengScene.cpp",
-              "ViewState": "AgIAAEcBAAAAAAAAAAArwGsBAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-10-16T06:33:07.867Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MineSweeperScene.cpp",
-              "DocumentMoniker": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\MineSweeperScene.cpp",
-              "RelativeDocumentMoniker": "SiChuanSheng\\MineSweeperScene.cpp",
-              "ToolTip": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\MineSweeperScene.cpp",
-              "RelativeToolTip": "SiChuanSheng\\MineSweeperScene.cpp",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAmwEwAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-10-16T06:06:37.453Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "MainScene.cpp",
-              "DocumentMoniker": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\MainScene.cpp",
-              "RelativeDocumentMoniker": "SiChuanSheng\\MainScene.cpp",
-              "ToolTip": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\MainScene.cpp",
-              "RelativeToolTip": "SiChuanSheng\\MainScene.cpp",
-              "ViewState": "AgIAAAsAAAAAAAAAAAArwCAAAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-10-16T06:13:17.686Z",
+              "Title": "SceneManager.h",
+              "DocumentMoniker": "C:\\Users\\dhktj\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC1A1\uC740\uAD50 \uC790\uB8CC\\AtentzStudy\\SceneManager\uC608\uC81C\\SiChuanSheng\\SceneManager.h",
+              "RelativeDocumentMoniker": "SiChuanSheng\\SceneManager.h",
+              "ToolTip": "C:\\Users\\dhktj\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC1A1\uC740\uAD50 \uC790\uB8CC\\AtentzStudy\\SceneManager\uC608\uC81C\\SiChuanSheng\\SceneManager.h",
+              "RelativeToolTip": "SiChuanSheng\\SceneManager.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-10-19T11:19:02.593Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MineSweeperScene.h",
+              "DocumentMoniker": "C:\\Users\\dhktj\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC1A1\uC740\uAD50 \uC790\uB8CC\\AtentzStudy\\SceneManager\uC608\uC81C\\SiChuanSheng\\MineSweeperScene.h",
+              "RelativeDocumentMoniker": "SiChuanSheng\\MineSweeperScene.h",
+              "ToolTip": "C:\\Users\\dhktj\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC1A1\uC740\uAD50 \uC790\uB8CC\\AtentzStudy\\SceneManager\uC608\uC81C\\SiChuanSheng\\MineSweeperScene.h",
+              "RelativeToolTip": "SiChuanSheng\\MineSweeperScene.h",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACwAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-10-19T11:17:46.343Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "Mine.h",
+              "DocumentMoniker": "C:\\Users\\dhktj\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC1A1\uC740\uAD50 \uC790\uB8CC\\AtentzStudy\\SceneManager\uC608\uC81C\\SiChuanSheng\\Mine.h",
+              "RelativeDocumentMoniker": "SiChuanSheng\\Mine.h",
+              "ToolTip": "C:\\Users\\dhktj\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC1A1\uC740\uAD50 \uC790\uB8CC\\AtentzStudy\\SceneManager\uC608\uC81C\\SiChuanSheng\\Mine.h",
+              "RelativeToolTip": "SiChuanSheng\\Mine.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-10-19T11:17:32.093Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 158,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "SceneManager.cpp",
-              "DocumentMoniker": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\SceneManager.cpp",
+              "DocumentMoniker": "C:\\Users\\dhktj\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC1A1\uC740\uAD50 \uC790\uB8CC\\AtentzStudy\\SceneManager\uC608\uC81C\\SiChuanSheng\\SceneManager.cpp",
               "RelativeDocumentMoniker": "SiChuanSheng\\SceneManager.cpp",
-              "ToolTip": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\SceneManager.cpp",
+              "ToolTip": "C:\\Users\\dhktj\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC1A1\uC740\uAD50 \uC790\uB8CC\\AtentzStudy\\SceneManager\uC608\uC81C\\SiChuanSheng\\SceneManager.cpp",
               "RelativeToolTip": "SiChuanSheng\\SceneManager.cpp",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABgAAAA/AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-10-16T06:05:57.25Z",
+              "WhenOpened": "2025-10-19T11:19:02.096Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "SiChuanShengScene.h",
-              "DocumentMoniker": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\SiChuanShengScene.h",
-              "RelativeDocumentMoniker": "SiChuanSheng\\SiChuanShengScene.h",
-              "ToolTip": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\SiChuanShengScene.h",
-              "RelativeToolTip": "SiChuanSheng\\SiChuanShengScene.h",
-              "ViewState": "AgIAAEIAAAAAAAAAAAArwGIAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-10-16T06:14:25.951Z",
+              "DocumentIndex": 0,
+              "Title": "MineSweeperScene.cpp",
+              "DocumentMoniker": "C:\\Users\\dhktj\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC1A1\uC740\uAD50 \uC790\uB8CC\\AtentzStudy\\SceneManager\uC608\uC81C\\SiChuanSheng\\MineSweeperScene.cpp",
+              "RelativeDocumentMoniker": "SiChuanSheng\\MineSweeperScene.cpp",
+              "ToolTip": "C:\\Users\\dhktj\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC1A1\uC740\uAD50 \uC790\uB8CC\\AtentzStudy\\SceneManager\uC608\uC81C\\SiChuanSheng\\MineSweeperScene.cpp",
+              "RelativeToolTip": "SiChuanSheng\\MineSweeperScene.cpp",
+              "ViewState": "AgIAANsAAAAAAAAAAAAAAHYAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-10-19T11:17:46.829Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 5,
               "Title": "Mine.cpp",
-              "DocumentMoniker": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\Mine.cpp",
+              "DocumentMoniker": "C:\\Users\\dhktj\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC1A1\uC740\uAD50 \uC790\uB8CC\\AtentzStudy\\SceneManager\uC608\uC81C\\SiChuanSheng\\Mine.cpp",
               "RelativeDocumentMoniker": "SiChuanSheng\\Mine.cpp",
-              "ToolTip": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\Mine.cpp",
+              "ToolTip": "C:\\Users\\dhktj\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\\uC1A1\uC740\uAD50 \uC790\uB8CC\\AtentzStudy\\SceneManager\uC608\uC81C\\SiChuanSheng\\Mine.cpp",
               "RelativeToolTip": "SiChuanSheng\\Mine.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABKAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-10-16T06:20:14.306Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Block.cpp",
-              "DocumentMoniker": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\Block.cpp",
-              "RelativeDocumentMoniker": "SiChuanSheng\\Block.cpp",
-              "ToolTip": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\Block.cpp",
-              "RelativeToolTip": "SiChuanSheng\\Block.cpp",
-              "ViewState": "AgIAACoAAAAAAAAAAAAAACsAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-10-16T06:14:51.927Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Block.h",
-              "DocumentMoniker": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\Block.h",
-              "RelativeDocumentMoniker": "SiChuanSheng\\Block.h",
-              "ToolTip": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\Block.h",
-              "RelativeToolTip": "SiChuanSheng\\Block.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-10-16T06:14:43.458Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "ResourceManager.cpp",
-              "DocumentMoniker": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\ResourceManager.cpp",
-              "RelativeDocumentMoniker": "SiChuanSheng\\ResourceManager.cpp",
-              "ToolTip": "C:\\Users\\dhktj\\OneDrive\\Desktop\\SceneManager\uC608\uC81C\\SceneManager\uC608\uC81C\\SiChuanSheng\\ResourceManager.cpp",
-              "RelativeToolTip": "SiChuanSheng\\ResourceManager.cpp",
-              "ViewState": "AgIAAGYAAAAAAAAAAAAAAIAAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-10-16T06:02:37.234Z",
+              "WhenOpened": "2025-10-19T11:17:32.513Z",
               "EditorCaption": ""
             }
           ]

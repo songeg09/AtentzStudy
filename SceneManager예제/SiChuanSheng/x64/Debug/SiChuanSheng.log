@@ -1,0 +1,62 @@
+﻿Build started 2025-10-19 오후 8:25:15.
+Logging verbosity is set to: Normal.     1>Project "C:\Users\dhktj\OneDrive\바탕 화면\송은교 자료\AtentzStudy\SceneManager예제\SiChuanSheng\SiChuanSheng.vcxproj" on node 2 (Build target(s)).
+     1>PrepareForBuild:
+         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+       InitializeBuildStatus:
+         Creating "x64\Debug\SiChuanSheng.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "x64\Debug\SiChuanSheng.tlog\unsuccessfulbuild".
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\bin\HostX64\x64\CL.exe /c /ZI /JMC /nologo /W3 /WX- /diagnostics:column /sdl /Od /D _DEBUG /D _WINDOWS /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /permissive- /Yc"pch.h" /Fp"x64\Debug\SiChuanSheng.pch" /Fo"x64\Debug\\" /Fd"x64\Debug\vc143.pdb" /external:W3 /Gd /TP /FC /errorReport:prompt Block.cpp Core.cpp MainScene.cpp MineSweeperScene.cpp SceneManager.cpp SiChuanShengScene.cpp
+         Block.cpp
+     1>C:\Users\dhktj\OneDrive\바탕 화면\송은교 자료\AtentzStudy\SceneManager예제\SiChuanSheng\Block.cpp(31,38): warning C4805: '==': unsafe mix of type 'BOOL' and type 'bool' in operation
+         Core.cpp
+     1>C:\Users\dhktj\OneDrive\바탕 화면\송은교 자료\AtentzStudy\SceneManager예제\SiChuanSheng\Core.cpp(27,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+         MainScene.cpp
+         MineSweeperScene.cpp
+     1>C:\Users\dhktj\OneDrive\바탕 화면\송은교 자료\AtentzStudy\SceneManager예제\SiChuanSheng\MineSweeperScene.cpp(110,77): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+         SceneManager.cpp
+         SiChuanShengScene.cpp
+     1>C:\Users\dhktj\OneDrive\바탕 화면\송은교 자료\AtentzStudy\SceneManager예제\SiChuanSheng\SiChuanShengScene.cpp(120,58): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+     1>C:\Users\dhktj\OneDrive\바탕 화면\송은교 자료\AtentzStudy\SceneManager예제\SiChuanSheng\SiChuanShengScene.cpp(122,59): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+       ResourceCompile:
+         All outputs are up-to-date.
+       Link:
+         C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\bin\HostX64\x64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\dhktj\OneDrive\바탕 화면\송은교 자료\AtentzStudy\SceneManager예제\Output\bin_debug\SiChuanSheng.exe" /INCREMENTAL /ILK:"x64\Debug\SiChuanSheng.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\dhktj\OneDrive\바탕 화면\송은교 자료\AtentzStudy\SceneManager예제\Output\bin_debug\SiChuanSheng.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\dhktj\OneDrive\바탕 화면\송은교 자료\AtentzStudy\SceneManager예제\Output\bin_debug\SiChuanSheng.lib" /MACHINE:X64 x64\Debug\SiChuanSheng.res
+         x64\Debug\Block.obj
+         x64\Debug\Button.obj
+         x64\Debug\Core.obj
+         x64\Debug\GameResource.obj
+         x64\Debug\InputManager.obj
+         x64\Debug\Load.obj
+         x64\Debug\MainScene.obj
+         x64\Debug\Mine.obj
+         x64\Debug\MineSweeperScene.obj
+         x64\Debug\Object.obj
+         x64\Debug\PathManager.obj
+         x64\Debug\ResourceManager.obj
+         x64\Debug\Scene.obj
+         x64\Debug\SceneManager.obj
+         x64\Debug\SiChuanShengScene.obj
+         x64\Debug\Texture.obj
+         x64\Debug\TimerUI.obj
+         x64\Debug\WinMain.obj
+         SiChuanSheng.vcxproj -> C:\Users\dhktj\OneDrive\바탕 화면\송은교 자료\AtentzStudy\SceneManager예제\Output\bin_debug\SiChuanSheng.exe
+       FinalizeBuildStatus:
+         Deleting file "x64\Debug\SiChuanSheng.tlog\unsuccessfulbuild".
+         Touching "x64\Debug\SiChuanSheng.tlog\SiChuanSheng.lastbuildstate".
+     1>Done Building Project "C:\Users\dhktj\OneDrive\바탕 화면\송은교 자료\AtentzStudy\SceneManager예제\SiChuanSheng\SiChuanSheng.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+       "C:\Users\dhktj\OneDrive\바탕 화면\송은교 자료\AtentzStudy\SceneManager예제\SiChuanSheng\SiChuanSheng.vcxproj" (Build target) (1) ->
+       (ClCompile target) -> 
+         C:\Users\dhktj\OneDrive\바탕 화면\송은교 자료\AtentzStudy\SceneManager예제\SiChuanSheng\Block.cpp(31,38): warning C4805: '==': unsafe mix of type 'BOOL' and type 'bool' in operation
+         C:\Users\dhktj\OneDrive\바탕 화면\송은교 자료\AtentzStudy\SceneManager예제\SiChuanSheng\Core.cpp(27,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+         C:\Users\dhktj\OneDrive\바탕 화면\송은교 자료\AtentzStudy\SceneManager예제\SiChuanSheng\MineSweeperScene.cpp(110,77): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+         C:\Users\dhktj\OneDrive\바탕 화면\송은교 자료\AtentzStudy\SceneManager예제\SiChuanSheng\SiChuanShengScene.cpp(120,58): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+         C:\Users\dhktj\OneDrive\바탕 화면\송은교 자료\AtentzStudy\SceneManager예제\SiChuanSheng\SiChuanShengScene.cpp(122,59): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+
+    5 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.27

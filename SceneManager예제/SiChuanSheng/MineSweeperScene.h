@@ -1,16 +1,28 @@
 #pragma once
 #include"Scene.h"
 
-
-
 class Texture;
 class Mine;
 
 class MineSweeperScene : public Scene
 {
-	static constexpr int BOARD_HEIGHT = 30;
-	static constexpr int BOARD_WIDTH = 16;
+	static constexpr int BOARD_HEIGHT = 16;
+	static constexpr int BOARD_WIDTH = 30;
 	static constexpr int NUM_OF_BOMBS = 48;
+
+	static constexpr int FLAGLEFT_START_X = 673;
+	static constexpr int FLAGLEFT_START_Y = 480;
+
+	const Vector2 Directions[8] = {
+		{0,-1},
+		{1,-1},
+		{1,0},
+		{1,1},
+		{0,1},
+		{-1,1},
+		{ -1,0},
+		{-1,-1}
+	};
 
 	enum class GAMESTATE
 	{
@@ -22,7 +34,7 @@ class MineSweeperScene : public Scene
 
 	enum OBJECT_GROUP
 	{
-		BLOCK,
+		MINE,
 		END,
 	};
 
@@ -37,23 +49,22 @@ public:
 	~MineSweeperScene();
 
 	virtual void Init() override;
-	virtual void Release() override;
 	virtual void Update() override;
 	virtual void Render(HDC _memDC) override;
 
 	// 보드 관련 함수
 	void InitBoard();
-	void ReleaseBoard();
 	void ShuffleBoard();
+	void SetTextures();
 
 	// 게임 관련 함수
 	int GetAdjMines(const Vector2 _pos);
 	bool PositionOutOfBounds(const Vector2& _pos);
 	void RevealMines();
-	void RevealAdjBlocks(const Vector2 _vec2);
+	void RevealAdj(const Vector2 _vec2);
 
 	bool WinCheck();
-	void HandleBlockClicked(const Vector2 _vec2);
-	void HandleBombClicked();
+	void HandleLeftClick(const Vector2 _vec2);
+	void HandleRightClick(const Vector2 _vec2);
 };
 

@@ -30,11 +30,11 @@ struct Vector2
 			return m_iy < vec.m_iy;
 		return m_ix < vec.m_ix;
 	}
-	Vector2 operator+(Vector2 vec)
+	Vector2 operator+(const Vector2 vec) const
 	{
 		return Vector2{ m_ix + vec.m_ix ,m_iy + vec.m_iy };
 	}
-	void operator+=(Vector2 vec)
+	void operator+=(const Vector2 vec)
 	{
 		m_ix += vec.m_ix;
 		m_iy += vec.m_iy;
