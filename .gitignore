@@ -12,3 +12,5 @@
 *.res
 *.idb
 *.ipdb
+*.pch
+x64
