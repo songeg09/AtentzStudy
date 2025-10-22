@@ -22,4 +22,19 @@ struct Vector2
 		m_fx += _vec2.m_fx;
 		m_fy += _vec2.m_fy;
 	}
+	Vector2 operator - (Vector2 _vec2)
+	{
+		return Vector2(m_fx - _vec2.m_fx, m_fy - _vec2.m_fy);
+	}
+	float Length()
+	{
+		return sqrt(m_fx * m_fx + m_fy * m_fy);
+	}
+	void Normalize()
+	{
+		float length = Length();
+		assert(length != 0.0f);
+		m_fx /= length;
+		m_fy /= length;
+	}
 };

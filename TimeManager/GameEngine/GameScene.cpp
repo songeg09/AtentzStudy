@@ -18,7 +18,7 @@ void GameScene::Init()
 	InputManager::GetInstance()->RegistKey(VK_SPACE);
 
 	m_pBackGround = ResourceManager::GetInstance()->LoadTexture(TEXTURE_TYPE::BACKGROUND);
-	Scene::SetWindowSize(m_pBackGround->GetWidth(), m_pBackGround->GetHeight());
+	Scene::SetWindowSize(ConstValue::vec2GameSceneWindowSize.m_fx, ConstValue::vec2GameSceneWindowSize.m_fy);
 
 	Player* pPlayer = new Player;
 	Vector2 vec2WindowSize = Scene::GetWindowSize();

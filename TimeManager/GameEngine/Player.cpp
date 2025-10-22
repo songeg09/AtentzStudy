@@ -4,6 +4,7 @@
 #include "InputManager.h"
 #include "SceneManager.h"
 #include "Arrow.h"
+#include "Core.h"
 
 Player::Player()
 {
@@ -16,12 +17,20 @@ Player::~Player()
 
 void Player::FireArrow()
 {
-	Arrow* arrow = new Arrow;
 	Vector2 vec2Position = Object::GetPosition();
-	vec2Position.m_fx += 18;
-	vec2Position.m_fy -= 35;
-	arrow->Init(vec2Position, TEXTURE_TYPE::ARROW);
-	arrow->SetSpeed(ConstValue::fArrow_Speed);
+	vec2Position.m_fx += ConstValue::vec2PlayerFirePosition.m_fx;
+	vec2Position.m_fy -= ConstValue::vec2PlayerFirePosition.m_fy;
+
+	POINT ptMouse;
+	GetCursorPos(&ptMouse);
+	ScreenToClient(Core::GetInstance()->GethWnd(), &ptMouse);
+
+	Vector2 vecMouse{ static_cast<float>(ptMouse.x),static_cast<float>(ptMouse.y) };
+	Vector2 DirectionVector = vecMouse - vec2Position;
+	DirectionVector.Normalize();
+	
+	Arrow* arrow = new Arrow;
+	arrow->Init(vec2Position, TEXTURE_TYPE::ARROW, ConstValue::fArrow_Speed, DirectionVector);
 	SceneManager::GetInstance()->GetCurScene()->AddObject(arrow, OBJECT_GROUP::BULLET);
 }
 
