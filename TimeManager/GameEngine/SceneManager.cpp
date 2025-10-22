@@ -21,7 +21,7 @@ SceneManager::~SceneManager()
 }
 void SceneManager::Init()
 {
-	m_arrScene[static_cast<int>(SCENE_TYPE::GAME)] = new GameScene("Play");
+	m_arrScene[static_cast<int>(SCENE_TYPE::GAME)] = new GameScene(L"Play");
 	SceneChange(SCENE_TYPE::GAME);
 }
 

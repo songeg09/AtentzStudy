@@ -4,7 +4,7 @@
 #include "Player.h"
 #include "InputManager.h"
 
-GameScene::GameScene(std::string _strName) : Scene(_strName)
+GameScene::GameScene(std::wstring _strName) : Scene(_strName)
 {
 	m_pBackGround = nullptr;
 }

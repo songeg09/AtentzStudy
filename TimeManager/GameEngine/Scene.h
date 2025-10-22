@@ -15,9 +15,9 @@ protected:
 	Vector2					m_vec2WindowCenterPosition;
 	Vector2					m_vec2WindowSize;
 	std::vector<Object*>	m_arrObjects[static_cast<int>(OBJECT_GROUP::END)];
-	std::string				m_strName;
+	std::wstring				m_strName;
 public:
-	Scene(std::string _strName);
+	Scene(std::wstring _strName);
 	virtual ~Scene();
 	virtual void Update();
 	virtual void Render(HDC _memDC);
@@ -26,6 +26,6 @@ public:
 	void SetWindowSize(int _iWidth, int _iHeight);
 	void AddObject(Object* _object, OBJECT_GROUP _eGroup);
 	Vector2 GetWindowSize() { return m_vec2WindowSize; }
-	void SetName(const std::string _strName) { m_strName = _strName; }
+	void SetName(const std::wstring _strName) { m_strName = _strName; }
 };
 

@@ -7,7 +7,7 @@ private:
 	HBITMAP m_hBitMap;
 	BITMAP m_BitMapInfomation;
 public:
-	void Load(std::string _strFilePath);
+	void Load(std::wstring _strFilePath);
 	HDC GetDC() { return m_hDC; }
 	int GetWidth() { return m_BitMapInfomation.bmWidth; }
 	int GetHeight() { return m_BitMapInfomation.bmHeight; }

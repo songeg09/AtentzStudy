@@ -20,7 +20,7 @@ Core::~Core()
 	if (m_hBackDC != nullptr)
 		DeleteDC(m_hBackDC);
 	if (m_hWnd != nullptr && m_hDC != nullptr)
-		ReleaseDC(m_hWnd,m_hDC);
+		ReleaseDC(m_hWnd, m_hDC);
 }
 void Core::Init(HWND _hWnd)
 {
@@ -73,8 +73,8 @@ void Core::Render()
 		return;
 	SceneManager::GetInstance()->Render(m_hBackDC);
 
-	std::string FPSMessage = std::format("FPS : {}", TimerManager::GetInstance()->intGetFPS());
-	TextOut(m_hBackDC, 0, 0, FPSMessage.c_str(), FPSMessage.length());
+	std::wstring FPSMessage = std::format(L"FPS : {}", TimerManager::GetInstance()->intGetFPS());
+	TextOutW(m_hBackDC, 0, 0, FPSMessage.c_str(), FPSMessage.length());
 
 	Vector2 WindowSize = SceneManager::GetInstance()->GetCurScene()->GetWindowSize();
 	BitBlt(m_hDC, 0, 0, WindowSize.m_fx, WindowSize.m_fy, m_hBackDC, 0, 0, SRCCOPY);

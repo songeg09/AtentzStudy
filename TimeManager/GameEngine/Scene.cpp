@@ -4,7 +4,7 @@
 #include "Core.h"
 #include "InputManager.h"
 
-Scene::Scene(std::string _strName)
+Scene::Scene(std::wstring _strName)
 {
 	m_strName = _strName;
 }
@@ -47,7 +47,7 @@ void Scene::Update()
 {
 	for (int i = 0; i < static_cast<int>(OBJECT_GROUP::END); i++)
 	{
-		for(int j =0 ; j < m_arrObjects[i].size() ; j++)
+		for (int j = 0; j < m_arrObjects[i].size(); j++)
 			m_arrObjects[i][j]->Update();
 	}
 }

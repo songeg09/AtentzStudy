@@ -11,10 +11,10 @@ PathManager::~PathManager()
 }
 void PathManager::Init()
 {
-	GetCurrentDirectory(sizeof(m_szContentsPath), m_szContentsPath);
-	int length = strlen(m_szContentsPath);
+	GetCurrentDirectoryW(sizeof(m_szContentsPath), m_szContentsPath);
+	int length = wcslen(m_szContentsPath);
 	int i = length - 1;
-	while (m_szContentsPath[i] != '\\') { --i; }
+	while (m_szContentsPath[i] != L'\\') { --i; }
 	m_szContentsPath[i] = NULL;
-	strcat_s(m_szContentsPath, "\\bin\\content\\");
+	wcscat_s(m_szContentsPath, L"\\bin\\content\\");
 }

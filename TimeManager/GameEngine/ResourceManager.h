@@ -43,11 +43,11 @@ class ResourceManager
 {
 	SINGLETON(ResourceManager)
 private:
-	std::map<std::string, Texture*> m_MapTexture;
-	std::string GetTextureFileName(TEXTURE_TYPE _eTextureType);
+	std::map<std::wstring, Texture*> m_MapTexture;
+	std::wstring GetTextureFileName(TEXTURE_TYPE _eTextureType);
 public:
 	Texture* LoadTexture(TEXTURE_TYPE _eTextureType);
-	Texture* FindTexture(const std::string& _strKey);
+	Texture* FindTexture(const std::wstring& _strKey);
 
 };
 

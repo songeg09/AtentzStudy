@@ -7,7 +7,7 @@ class GameScene : public Scene
 private:
 	Texture* m_pBackGround;
 public:
-	GameScene(std::string _strName);
+	GameScene(std::wstring _strName);
 	~GameScene();
 	virtual void Init() override;
 	virtual void Update() override;
