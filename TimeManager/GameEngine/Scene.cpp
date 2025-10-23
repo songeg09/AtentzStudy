@@ -3,6 +3,7 @@
 #include "Object.h"
 #include "Core.h"
 #include "InputManager.h"
+#include "CollisionManager.h"
 
 Scene::Scene(std::wstring _strName)
 {
@@ -24,6 +25,7 @@ void Scene::Release()
 		}
 		m_arrObjects[i].clear();
 	}
+	CollisionManager::GetInstance()->ReleaseCollisionGroup();
 }
 
 void Scene::SetWindowSize(int _iWidth, int _iHeight)
@@ -49,6 +51,15 @@ void Scene::Update()
 	{
 		for (int j = 0; j < m_arrObjects[i].size(); j++)
 			m_arrObjects[i][j]->Update();
+	}
+}
+
+void Scene::LateUpdate()
+{
+	for (int i = 0; i < static_cast<int>(OBJECT_GROUP::END); i++)
+	{
+		for (int j = 0; j < m_arrObjects[i].size(); j++)
+			m_arrObjects[i][j]->LateUpdate();
 	}
 }
 

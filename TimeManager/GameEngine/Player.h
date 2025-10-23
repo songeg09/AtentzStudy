@@ -7,17 +7,23 @@ class Player : public Object
 	enum ANIMATION
 	{
 		IDLE,
-		ATTACK_1,
+		RUN,
+		ATTACK,
 		END,
 	};
 private:
-	Animation m_AnimationList[ANIMATION::END];
+	Animation m_AnimationList[DIRECTION::END][ANIMATION::END];
 	ANIMATION m_eCurAnimation;
+	DIRECTION m_eDirection;
+	const float m_fMoveSpeed;
 public:
 	Player();
 	~Player();
 	// Object을(를) 통해 상속됨
-	void FireArrow();
+	void SetAnimation(ANIMATION _eAnimation)
+	{
+		m_eCurAnimation = _eAnimation;
+	}
 	virtual void Init(Vector2 _vec2Position);
 	virtual void Update() override;
 	virtual void Render(HDC _memDC) override;

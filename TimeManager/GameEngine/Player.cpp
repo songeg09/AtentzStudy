@@ -3,77 +3,115 @@
 #include "Texture.h"
 #include "InputManager.h"
 #include "SceneManager.h"
-#include "Arrow.h"
+#include "TimerManager.h"
 #include "Core.h"
+#include "Collider.h"
 
 Player::Player()
+	: m_fMoveSpeed(150.0f)
 {
 	m_eCurAnimation = ANIMATION::IDLE;
+	m_eDirection = DIRECTION::DOWN;
+	CreateCollider();
+	GetCollider()->SetSize(Vector2{ 30.0f, 40.0f });
+	GetCollider()->SetOffsetPosition(Vector2{ 0.0f,-40.0f });
 }
 
 Player::~Player()
 {
 }
 
-void Player::FireArrow()
-{
-	Vector2 vec2Position = Object::GetPosition();
-	vec2Position.m_fx += ConstValue::vec2PlayerFirePosition.m_fx;
-	vec2Position.m_fy -= ConstValue::vec2PlayerFirePosition.m_fy;
-
-	POINT ptMouse;
-	GetCursorPos(&ptMouse);
-	ScreenToClient(Core::GetInstance()->GethWnd(), &ptMouse);
-
-	Vector2 vecMouse{ static_cast<float>(ptMouse.x),static_cast<float>(ptMouse.y) };
-	Vector2 DirectionVector = vecMouse - vec2Position;
-	DirectionVector.Normalize();
-	
-	Arrow* arrow = new Arrow;
-	arrow->Init(vec2Position, TEXTURE_TYPE::ARROW, ConstValue::fArrow_Speed, DirectionVector);
-	SceneManager::GetInstance()->GetCurScene()->AddObject(arrow, OBJECT_GROUP::BULLET);
-}
-
 void Player::Init(Vector2 _vec2Position)
 {
+	InputManager::GetInstance()->RegistKey(VK_LEFT);
+	InputManager::GetInstance()->RegistKey(VK_RIGHT);
+	InputManager::GetInstance()->RegistKey(VK_UP);
+	InputManager::GetInstance()->RegistKey(VK_DOWN);
+	InputManager::GetInstance()->RegistKey(VK_SPACE);
+
 	Object::SetPosition(_vec2Position);
 	std::vector<AnimNode> vecAnimationList;
-	for (int i = static_cast<int>(TEXTURE_TYPE::PLAYER_IDLE_START); i <= static_cast<int>(TEXTURE_TYPE::PLAYER_IDLE_END); i++)
+
+	for (int i = DIRECTION::START; i != DIRECTION::END; ++i)
 	{
-		vecAnimationList.push_back(AnimNode{ ResourceManager::GetInstance()->LoadTexture(static_cast<TEXTURE_TYPE>(i)),nullptr });
+		//방향별 IDLE 애니메이션
+		vecAnimationList.clear();
+		for (int j = TEXTURE_TYPE::PLAYER_IDLE_START; j <= TEXTURE_TYPE::PLAYER_IDLE_END; j++)
+		{
+			vecAnimationList.push_back(AnimNode{ ResourceManager::GetInstance()->LoadTexture(static_cast<TEXTURE_TYPE>(j),static_cast<DIRECTION>(i)),nullptr });
+		}
+		m_AnimationList[i][ANIMATION::IDLE].Init(vecAnimationList, ANIMATION_TYPE::LOOP, ConstValue::fAnimationPlayerSpeed, ANCHOR::CENTER_BOTTOM);
+
+		//방향별 이동 애니메이션
+		vecAnimationList.clear();
+		for (int j = TEXTURE_TYPE::PLAYER_RUN_START; j <= TEXTURE_TYPE::PLAYER_RUN_END; ++j)
+		{
+			vecAnimationList.push_back(AnimNode{ ResourceManager::GetInstance()->LoadTexture(static_cast<TEXTURE_TYPE>(j),static_cast<DIRECTION>(i)),nullptr });
+		}
+		m_AnimationList[i][ANIMATION::RUN].Init(vecAnimationList, ANIMATION_TYPE::LOOP, ConstValue::fAnimationPlayerSpeed, ANCHOR::CENTER_BOTTOM);
+	
+		//방향별 공격 애니메이션
+		vecAnimationList.clear();
+		for (int j = TEXTURE_TYPE::PLAYER_ATTACK_START; j <= TEXTURE_TYPE::PLAYER_ATTACK_END; ++j)
+		{
+			vecAnimationList.push_back(AnimNode{ ResourceManager::GetInstance()->LoadTexture(static_cast<TEXTURE_TYPE>(j),static_cast<DIRECTION>(i)),nullptr });
+		}
+		vecAnimationList[vecAnimationList.size() - 1].m_callBack = std::bind(&Player::SetAnimation, this, ANIMATION::IDLE);
+		m_AnimationList[i][ANIMATION::ATTACK].Init(vecAnimationList, ANIMATION_TYPE::ONCE, ConstValue::fAnimationPlayerSpeed, ANCHOR::CENTER_BOTTOM);
 	}
-	m_AnimationList[ANIMATION::IDLE].Init(vecAnimationList, ANIMATION_TYPE::LOOP, 0.1f, ANCHOR::CENTER_BOTTOM);
-
-	vecAnimationList.clear();
-	for (int i = static_cast<int>(TEXTURE_TYPE::PLAYER_ATTACK_1_START); i <= static_cast<int>(TEXTURE_TYPE::PLAYER_ATTACK_1_END); i++)
-	{
-		vecAnimationList.push_back(AnimNode{ ResourceManager::GetInstance()->LoadTexture(static_cast<TEXTURE_TYPE>(i)),nullptr });
-	}
-	vecAnimationList[8].m_callBack = std::bind(&Player::FireArrow, this);
-	m_AnimationList[ANIMATION::ATTACK_1].Init(vecAnimationList, ANIMATION_TYPE::ONCE, 0.1f, ANCHOR::CENTER_BOTTOM);
-
-
+	
 	m_eCurAnimation = ANIMATION::IDLE;
 }
 
 void Player::Update()
 {
-	if (m_eCurAnimation == ANIMATION::IDLE && InputManager::GetInstance()->GetKeyState(VK_SPACE) == KEY_STATE::DOWN)
+	if (InputManager::GetInstance()->GetKeyState(VK_SPACE) == KEY_STATE::DOWN)
 	{
-		m_eCurAnimation = ANIMATION::ATTACK_1;
-		m_AnimationList[m_eCurAnimation].Reset();
+		m_eCurAnimation = ANIMATION::ATTACK;
+		m_AnimationList[m_eDirection][m_eCurAnimation].Reset();
+	}
+	else if (m_eCurAnimation != ANIMATION::ATTACK)
+	{
+		Vector2 vec2MoveForce;
+		if (InputManager::GetInstance()->GetKeyState(VK_LEFT) == KEY_STATE::PRESS)
+		{
+			vec2MoveForce.m_fx = m_fMoveSpeed * TimerManager::GetInstance()->GetdDeltaTime() * -1.0f;
+			m_eDirection = DIRECTION::LEFT;
+		}
+		else if (InputManager::GetInstance()->GetKeyState(VK_RIGHT) == KEY_STATE::PRESS)
+		{
+			vec2MoveForce.m_fx = m_fMoveSpeed * TimerManager::GetInstance()->GetdDeltaTime() * 1.0f;
+			m_eDirection = DIRECTION::RIGHT;
+		}
+		else if (InputManager::GetInstance()->GetKeyState(VK_UP) == KEY_STATE::PRESS)
+		{
+			vec2MoveForce.m_fy = m_fMoveSpeed * TimerManager::GetInstance()->GetdDeltaTime() * -1.0f;
+			m_eDirection = DIRECTION::UP;
+		}
+		else if (InputManager::GetInstance()->GetKeyState(VK_DOWN) == KEY_STATE::PRESS)
+		{
+			vec2MoveForce.m_fy = m_fMoveSpeed * TimerManager::GetInstance()->GetdDeltaTime() * 1.0f;
+			m_eDirection = DIRECTION::DOWN;
+		}
+		if (vec2MoveForce.m_fx != 0.0f || vec2MoveForce.m_fy != 0.0f)
+		{
+			Vector2 vec2CurPosition = GetPosition();
+			vec2CurPosition += vec2MoveForce;
+			SetPosition(vec2CurPosition);
+			m_eCurAnimation = ANIMATION::RUN;
+		}
+		else
+		{
+			m_eCurAnimation = ANIMATION::IDLE;
+		}
 	}
 
-	m_AnimationList[m_eCurAnimation].Update();
-
-	if (m_eCurAnimation == ANIMATION::ATTACK_1 && m_AnimationList[m_eCurAnimation].GetLive() == false)
-	{
-		m_eCurAnimation = ANIMATION::IDLE;
-		m_AnimationList[m_eCurAnimation].Reset();
-	}
+	m_AnimationList[m_eDirection][m_eCurAnimation].Update();
 }
 
 void Player::Render(HDC _memDC)
 {
-	m_AnimationList[m_eCurAnimation].Render(_memDC, Object::GetPosition());
+	m_AnimationList[m_eDirection][m_eCurAnimation].Render(_memDC, Object::GetPosition());
+	if (GetCollider() != nullptr)
+		GetCollider()->Render(_memDC);
 }

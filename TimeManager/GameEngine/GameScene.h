@@ -6,6 +6,7 @@ class GameScene : public Scene
 {
 private:
 	Texture* m_pBackGround;
+	Vector2 m_vec2BackGroundPosition;
 public:
 	GameScene(std::wstring _strName);
 	~GameScene();

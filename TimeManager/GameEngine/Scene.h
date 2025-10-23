@@ -1,12 +1,5 @@
 #pragma once
 
-enum class OBJECT_GROUP
-{
-	PLAYABLE,
-	BULLET,
-	END
-};
-
 class Object;
 class Scene
 {
@@ -20,9 +13,11 @@ public:
 	Scene(std::wstring _strName);
 	virtual ~Scene();
 	virtual void Update();
+	void LateUpdate();
 	virtual void Render(HDC _memDC);
 	virtual void Init() = 0;
 	virtual void Release();
+	const std::vector<Object*>& GetObjectGroup(OBJECT_GROUP _eObjectGrup) { return m_arrObjects[static_cast<int>(_eObjectGrup)]; }
 	void SetWindowSize(int _iWidth, int _iHeight);
 	void AddObject(Object* _object, OBJECT_GROUP _eGroup);
 	Vector2 GetWindowSize() { return m_vec2WindowSize; }

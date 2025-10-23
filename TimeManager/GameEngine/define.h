@@ -10,3 +10,11 @@
 	private:						\
 		Type();						\
 		~Type();
+
+enum class OBJECT_GROUP
+{
+	MONSTER,
+	PLAYABLE,
+	BULLET,
+	END
+};

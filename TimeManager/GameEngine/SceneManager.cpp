@@ -30,6 +30,7 @@ void SceneManager::Update()
 	if (m_eCurScene == SCENE_TYPE::END || m_arrScene[static_cast<int>(m_eCurScene)] == nullptr)
 		return;
 	m_arrScene[static_cast<int>(m_eCurScene)]->Update();
+	m_arrScene[static_cast<int>(m_eCurScene)]->LateUpdate();
 }
 
 void SceneManager::Render(HDC _memDC)

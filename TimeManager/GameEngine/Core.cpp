@@ -5,6 +5,7 @@
 #include "SceneManager.h"
 #include "Scene.h"
 #include "TimerManager.h"
+#include "CollisionManager.h"
 
 Core::Core()
 {
@@ -22,6 +23,15 @@ Core::~Core()
 	if (m_hWnd != nullptr && m_hDC != nullptr)
 		ReleaseDC(m_hWnd, m_hDC);
 }
+
+void Core::Update()
+{
+	TimerManager::GetInstance()->Update();
+	InputManager::GetInstance()->Update();
+	SceneManager::GetInstance()->Update();
+	CollisionManager::GetInstance()->Update();
+}
+
 void Core::Init(HWND _hWnd)
 {
 	m_hWnd = _hWnd;
@@ -32,6 +42,8 @@ void Core::Init(HWND _hWnd)
 	InputManager::GetInstance()->Init();
 
 	PathManager::GetInstance()->Init();
+
+	CollisionManager::GetInstance()->Init();
 
 	SceneManager::GetInstance()->Init();
 
@@ -60,12 +72,7 @@ void Core::CreateBackDC()
 	}
 }
 
-void Core::Update()
-{
-	TimerManager::GetInstance()->Update();
-	InputManager::GetInstance()->Update();
-	SceneManager::GetInstance()->Update();
-}
+
 
 void Core::Render()
 {
