@@ -68,6 +68,9 @@
     <Filter Include="Engine\03. Manager\CollisionManager">
       <UniqueIdentifier>{69ec1f4d-b29e-474d-826d-ce5f9837ffbe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04. Object\Sword">
+      <UniqueIdentifier>{ee23fdc5-6651-4737-8a17-cb50b6455d62}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -143,6 +146,9 @@
     <ClInclude Include="CollisionManager.h">
       <Filter>Engine\03. Manager\CollisionManager</Filter>
     </ClInclude>
+    <ClInclude Include="Sword.h">
+      <Filter>Engine\04. Object\Sword</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameEngine.rc">
@@ -209,6 +215,9 @@
     </ClCompile>
     <ClCompile Include="CollisionManager.cpp">
       <Filter>Engine\03. Manager\CollisionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Sword.cpp">
+      <Filter>Engine\04. Object\Sword</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

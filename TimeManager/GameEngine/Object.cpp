@@ -7,8 +7,10 @@ Object::Object()
 {
 	m_vec2Position = {};
 	m_vec2Scale = {};
+	m_vec2ExternalForce = {};
 	m_pTexture = nullptr;
 	m_pCollider = nullptr;
+	m_bCanMove = true;
 }
 
 Object::~Object()

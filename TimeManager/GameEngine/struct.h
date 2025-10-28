@@ -33,6 +33,15 @@ struct Vector2
 		value.m_fy = m_fy + _vec2.m_fy;
 		return value;
 	}
+
+	Vector2 operator * (float f)
+	{
+		Vector2 value;
+		value.m_fx = m_fx * f;
+		value.m_fy = m_fy * f;
+		return Vector2(m_fx * f, m_fy * f);
+	}
+
 	float Length()
 	{
 		return sqrt(m_fx * m_fx + m_fy * m_fy);
@@ -40,6 +49,9 @@ struct Vector2
 	void Normalize()
 	{
 		float length = Length();
+
+		if (length == 0.0f) return;
+
 		assert(length != 0.0f);
 		m_fx /= length;
 		m_fy /= length;

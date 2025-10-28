@@ -1,9 +1,11 @@
 #include "pch.h"
 #include "Monster.h"
 #include "Collider.h"
+#include "SceneManager.h"
+#include "TimerManager.h"
 
 Monster::Monster()
-	: m_fMoveSpeed(100.f)
+	: m_fMoveSpeed(ConstValue::MONSTER_SPEED)
 {
 	m_eCurAnimation = ANIMATION::IDLE;
 	m_eDirection = DIRECTION::DOWN;
@@ -37,6 +39,39 @@ void Monster::Init(Vector2 _vec2Position)
 
 void Monster::Update()
 {
+
+	Vector2 vec2MoveForce;
+	if (GetCanMove() == true)
+	{
+		// 플레이어 따라가기
+		if (Object* Player = SceneManager::GetInstance()->GetCurScene()->GetPlayer())
+		{
+			Vector2 PlayerPos = Player->GetCollider()->GetPosition();
+			vec2MoveForce = PlayerPos - GetCollider()->GetPosition();
+
+			vec2MoveForce.Normalize();
+			vec2MoveForce = vec2MoveForce * m_fMoveSpeed * TimerManager::GetInstance()->GetfDeltaTime();
+
+			SetPosition(GetPosition() + vec2MoveForce);
+		}
+	}
+	else
+	{
+		vec2MoveForce = GetExternalForce() * TimerManager::GetInstance()->GetfDeltaTime();
+
+		SetPosition(GetPosition() + vec2MoveForce);
+
+		Vector2 vec2Friction = GetExternalForce();
+		vec2Friction.Normalize();
+		vec2Friction = vec2Friction * ConstValue::FRICTION * TimerManager::GetInstance()->GetfDeltaTime() * (- 1.f);
+		
+		SetExternalForce(GetExternalForce() + vec2Friction);
+		if (GetExternalForce().Length() <= 0.2f)
+		{
+			SetCanMove(true);
+		}
+	}
+
 	m_AnimationList[m_eDirection][m_eCurAnimation].Update();
 }
 

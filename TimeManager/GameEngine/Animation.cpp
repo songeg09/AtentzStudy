@@ -34,17 +34,19 @@ void Animation::Init(std::vector<AnimNode> _vecList, ANIMATION_TYPE _eType, floa
 
 void Animation::Update()
 {
-	if (m_eType == ANIMATION_TYPE::ONCE && m_iCurIndex >= m_vecList.size() - 1)
+	if (m_eType == ANIMATION_TYPE::ONCE && m_iCurIndex >= m_vecList.size())
 		return;
 	m_fAccTime += TimerManager::GetInstance()->GetfDeltaTime();
 	if (m_fAccTime >= m_fSpeed)
 	{
-		++m_iCurIndex;
-		if (m_eType == ANIMATION_TYPE::LOOP && m_iCurIndex >= m_vecList.size())
-			m_iCurIndex = 0;
 		m_fAccTime = 0;
 		if (m_vecList[m_iCurIndex].m_callBack != nullptr)
 			m_vecList[m_iCurIndex].m_callBack();
+		
+		if (m_eType == ANIMATION_TYPE::LOOP && m_iCurIndex + 1 >= m_vecList.size())
+			m_iCurIndex = 0;
+		else
+			m_iCurIndex++;
 	}
 }
 

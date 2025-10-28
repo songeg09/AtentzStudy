@@ -24,6 +24,13 @@ void Collider::OnCollision(Collider* _pOther)
 
 void Collider::BeginCollision(Collider* _pOther)
 {
+	Vector2 KnockBackForce = m_vecPosition - _pOther->GetPosition();
+	KnockBackForce.Normalize();
+	KnockBackForce = KnockBackForce * ConstValue::KNOCKBACK_SPEED;
+
+	m_pTarget->SetExternalForce(KnockBackForce);
+	m_pTarget->SetCanMove(false);
+
 	m_iCollisionCount += 1;
 }
 

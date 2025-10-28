@@ -6,10 +6,12 @@
 #include "TimerManager.h"
 #include "Core.h"
 #include "Collider.h"
+#include "Sword.h"
 
 Player::Player()
 	: m_fMoveSpeed(150.0f)
 {
+	m_Sword = nullptr;
 	m_eCurAnimation = ANIMATION::IDLE;
 	m_eDirection = DIRECTION::DOWN;
 	CreateCollider();
@@ -23,6 +25,10 @@ Player::~Player()
 
 void Player::Init(Vector2 _vec2Position)
 {
+	m_Sword = new Sword;
+	m_Sword->Init({ 0.0f,0.0f }, this);
+	SceneManager::GetInstance()->GetCurScene()->AddObject(m_Sword, OBJECT_GROUP::BULLET);
+
 	InputManager::GetInstance()->RegistKey(VK_LEFT);
 	InputManager::GetInstance()->RegistKey(VK_RIGHT);
 	InputManager::GetInstance()->RegistKey(VK_UP);
@@ -56,8 +62,10 @@ void Player::Init(Vector2 _vec2Position)
 		{
 			vecAnimationList.push_back(AnimNode{ ResourceManager::GetInstance()->LoadTexture(static_cast<TEXTURE_TYPE>(j),static_cast<DIRECTION>(i)),nullptr });
 		}
-		vecAnimationList[vecAnimationList.size() - 1].m_callBack = std::bind(&Player::SetAnimation, this, ANIMATION::IDLE);
+ 		vecAnimationList[0].m_callBack = std::bind(&Player::BeginAttack, this);
+		vecAnimationList[vecAnimationList.size() - 1].m_callBack = std::bind(&Player::EndAttack, this);
 		m_AnimationList[i][ANIMATION::ATTACK].Init(vecAnimationList, ANIMATION_TYPE::ONCE, ConstValue::fAnimationPlayerSpeed, ANCHOR::CENTER_BOTTOM);
+		
 	}
 	
 	m_eCurAnimation = ANIMATION::IDLE;
@@ -114,4 +122,15 @@ void Player::Render(HDC _memDC)
 	m_AnimationList[m_eDirection][m_eCurAnimation].Render(_memDC, Object::GetPosition());
 	if (GetCollider() != nullptr)
 		GetCollider()->Render(_memDC);
+}
+
+void Player::BeginAttack()
+{
+	m_Sword->SetPosition(m_eDirection);
+}
+
+void Player::EndAttack()
+{
+	m_Sword->Object::SetPosition({ 0.0f,0.0f });
+	SetAnimation(ANIMATION::IDLE);
 }

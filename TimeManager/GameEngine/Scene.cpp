@@ -45,6 +45,13 @@ void Scene::AddObject(Object* _object, OBJECT_GROUP _eGroup)
 	m_arrObjects[static_cast<int>(_eGroup)].push_back(_object);
 }
 
+Object* Scene::GetPlayer()
+{
+	if(m_arrObjects[static_cast<int>(OBJECT_GROUP::PLAYABLE)].size() == 0)
+		return nullptr;
+	return m_arrObjects[static_cast<int>(OBJECT_GROUP::PLAYABLE)][0];
+}
+
 void Scene::Update()
 {
 	for (int i = 0; i < static_cast<int>(OBJECT_GROUP::END); i++)

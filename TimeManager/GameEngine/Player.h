@@ -2,6 +2,7 @@
 #include "Object.h"
 #include "ResourceManager.h"
 #include "Animation.h"
+class Sword;
 class Player : public Object
 {
 	enum ANIMATION
@@ -16,6 +17,9 @@ private:
 	ANIMATION m_eCurAnimation;
 	DIRECTION m_eDirection;
 	const float m_fMoveSpeed;
+
+	Sword* m_Sword;
+
 public:
 	Player();
 	~Player();
@@ -27,4 +31,7 @@ public:
 	virtual void Init(Vector2 _vec2Position);
 	virtual void Update() override;
 	virtual void Render(HDC _memDC) override;
+
+	void BeginAttack();
+	void EndAttack();
 };

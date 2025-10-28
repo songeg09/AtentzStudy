@@ -22,5 +22,7 @@ public:
 	void AddObject(Object* _object, OBJECT_GROUP _eGroup);
 	Vector2 GetWindowSize() { return m_vec2WindowSize; }
 	void SetName(const std::wstring _strName) { m_strName = _strName; }
+
+	Object* GetPlayer();
 };
 
