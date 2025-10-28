@@ -36,8 +36,8 @@ void GameScene::Init()
 		Scene::AddObject(monster, OBJECT_GROUP::MONSTER);
 	}
 
-	CollisionManager::GetInstance()->RegistCollisionGroup(OBJECT_GROUP::MONSTER, OBJECT_GROUP::PLAYABLE);
-	CollisionManager::GetInstance()->RegistCollisionGroup(OBJECT_GROUP::MONSTER, OBJECT_GROUP::BULLET);
+	CollisionManager::GetInstance()->RegistColliderGroup(COLLIDER_GROUP::MONSTER, COLLIDER_GROUP::PLAYABLE);
+	CollisionManager::GetInstance()->RegistColliderGroup(COLLIDER_GROUP::MONSTER, COLLIDER_GROUP::BULLET);
 }
 
 void GameScene::Update()

@@ -153,7 +153,6 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="struct.h" />
-    <ClInclude Include="Sword.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TimerManager.h" />
@@ -175,7 +174,6 @@
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="Sword.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TimerManager.cpp" />
   </ItemGroup>

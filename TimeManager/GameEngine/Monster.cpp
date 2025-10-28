@@ -3,16 +3,13 @@
 #include "Collider.h"
 #include "SceneManager.h"
 #include "TimerManager.h"
+#include "Player.h"
 
 Monster::Monster()
-	: m_fMoveSpeed(ConstValue::MONSTER_SPEED)
+	: Object(ConstValue::MONSTER_SPEED)
 {
 	m_eCurAnimation = ANIMATION::IDLE;
 	m_eDirection = DIRECTION::DOWN;
-
-	CreateCollider();
-	GetCollider()->SetSize(Vector2{ 20.0f, 20.0f });
-	GetCollider()->SetOffsetPosition(Vector2{ 0.0f,-10.0f });
 }
 
 Monster::~Monster()
@@ -21,7 +18,15 @@ Monster::~Monster()
 
 void Monster::Init(Vector2 _vec2Position)
 {
-	Object::SetPosition(_vec2Position);
+	Object::Init(_vec2Position);
+
+	Collider* collider = new Collider;
+	collider->SetTarget(this);
+	collider->SetSize(Vector2{ 20.0f, 20.0f });
+	collider->SetOffsetPosition(Vector2{ 0.0f,-10.0f });
+	collider->SetActive(true);
+	SceneManager::GetInstance()->GetCurScene()->AddCollider(collider, COLLIDER_GROUP::MONSTER);
+	m_pColliders.push_back(collider);
 
 	std::vector<AnimNode> vecAnimationList;
 	for (int i = DIRECTION::START; i != DIRECTION::END; ++i)
@@ -33,51 +38,57 @@ void Monster::Init(Vector2 _vec2Position)
 			vecAnimationList.push_back(AnimNode{ ResourceManager::GetInstance()->LoadTexture(static_cast<TEXTURE_TYPE>(j),static_cast<DIRECTION>(i)),nullptr });
 		}
 		m_AnimationList[i][ANIMATION::IDLE].Init(vecAnimationList, ANIMATION_TYPE::LOOP, 0.2f, ANCHOR::CENTER_BOTTOM);
+		m_AnimationList[i][ANIMATION::RUN].Init(vecAnimationList, ANIMATION_TYPE::LOOP, 0.2f, ANCHOR::CENTER_BOTTOM);
+		vecAnimationList[vecAnimationList.size() - 1].m_callBack = std::bind(&Monster::EndAttack, this);
+		m_AnimationList[i][ANIMATION::ATTACK].Init(vecAnimationList, ANIMATION_TYPE::ONCE, ConstValue::fAnimationPlayerSpeed, ANCHOR::CENTER_BOTTOM);
 	}
 	m_eCurAnimation = ANIMATION::IDLE;
 }
 
-void Monster::Update()
+
+void Monster::Action()
 {
-
-	Vector2 vec2MoveForce;
-	if (GetCanMove() == true)
+	// 플레이어 따라가기
+	if (Object* Player = SceneManager::GetInstance()->GetCurScene()->GetPlayer())
 	{
-		// 플레이어 따라가기
-		if (Object* Player = SceneManager::GetInstance()->GetCurScene()->GetPlayer())
-		{
-			Vector2 PlayerPos = Player->GetCollider()->GetPosition();
-			vec2MoveForce = PlayerPos - GetCollider()->GetPosition();
+		Vector2 PlayerPos = Player->GetPosition();
+		Vector2 vec2MoveForce = PlayerPos - GetPosition();
 
-			vec2MoveForce.Normalize();
-			vec2MoveForce = vec2MoveForce * m_fMoveSpeed * TimerManager::GetInstance()->GetfDeltaTime();
-
-			SetPosition(GetPosition() + vec2MoveForce);
-		}
-	}
-	else
-	{
-		vec2MoveForce = GetExternalForce() * TimerManager::GetInstance()->GetfDeltaTime();
+		vec2MoveForce.Normalize();
+		vec2MoveForce = vec2MoveForce * m_fMoveSpeed * TimerManager::GetInstance()->GetfDeltaTime();
 
 		SetPosition(GetPosition() + vec2MoveForce);
+	}
+}
 
-		Vector2 vec2Friction = GetExternalForce();
-		vec2Friction.Normalize();
-		vec2Friction = vec2Friction * ConstValue::FRICTION * TimerManager::GetInstance()->GetfDeltaTime() * (- 1.f);
-		
-		SetExternalForce(GetExternalForce() + vec2Friction);
-		if (GetExternalForce().Length() <= 0.2f)
+void Monster::EndAttack()
+{
+	SetAnimation(ANIMATION::IDLE);
+}
+
+void Monster::HitBy(Vector2 _vec2MoveForce, Collider* _other)
+{
+	// 공격중이거나
+	if (Object::m_eCurAnimation == ANIMATION::ATTACK)
+		return;
+
+	// 이미 넉백 중인경우 
+	if (m_vec2ExternalForce.Length() > 0.2f)
+		return;
+
+	if (Player* player = dynamic_cast<Player*>(SceneManager::GetInstance()->GetCurScene()->GetPlayer()))
+	{
+		// 칼에 닿았을 경우
+		if (_other == player->GetSword())
 		{
-			SetCanMove(true);
+			Object::m_vec2ExternalForce = _vec2MoveForce;
+		}
+		// 플레이어에게 직접 닿았을경우
+		else
+		{
+			m_eCurAnimation = ANIMATION::ATTACK;
+			m_AnimationList[m_eDirection][m_eCurAnimation].Reset();
 		}
 	}
 
-	m_AnimationList[m_eDirection][m_eCurAnimation].Update();
-}
-
-void Monster::Render(HDC _memDC)
-{
-	m_AnimationList[m_eDirection][m_eCurAnimation].Render(_memDC, Object::GetPosition());
-	if (GetCollider() != nullptr)
-		GetCollider()->Render(_memDC);
 }

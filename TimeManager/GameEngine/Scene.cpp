@@ -4,6 +4,7 @@
 #include "Core.h"
 #include "InputManager.h"
 #include "CollisionManager.h"
+#include "Collider.h"
 
 Scene::Scene(std::wstring _strName)
 {
@@ -25,7 +26,7 @@ void Scene::Release()
 		}
 		m_arrObjects[i].clear();
 	}
-	CollisionManager::GetInstance()->ReleaseCollisionGroup();
+	CollisionManager::GetInstance()->ReleaseColliderGroup();
 }
 
 void Scene::SetWindowSize(int _iWidth, int _iHeight)
@@ -43,6 +44,11 @@ void Scene::SetWindowSize(int _iWidth, int _iHeight)
 void Scene::AddObject(Object* _object, OBJECT_GROUP _eGroup)
 {
 	m_arrObjects[static_cast<int>(_eGroup)].push_back(_object);
+}
+
+void Scene::AddCollider(Collider* _collider, COLLIDER_GROUP _eGroup)
+{
+	m_arrColliders[static_cast<int>(_eGroup)].push_back(_collider);
 }
 
 Object* Scene::GetPlayer()

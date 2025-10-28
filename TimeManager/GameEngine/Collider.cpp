@@ -5,6 +5,8 @@
 
 unsigned int Collider::s_uID = 0;
 
+
+
 Collider::Collider()
 	:m_uID(++s_uID)
 {
@@ -12,25 +14,30 @@ Collider::Collider()
 	m_vecPosition = {};
 	m_pTarget = nullptr;
 	m_iCollisionCount = 0;
+	m_bActive = true;
 }
 
 Collider::~Collider()
 {
 }
 
-void Collider::OnCollision(Collider* _pOther)
-{
-}
-
-void Collider::BeginCollision(Collider* _pOther)
+void Collider::Hit(Collider* _pOther)
 {
 	Vector2 KnockBackForce = m_vecPosition - _pOther->GetPosition();
 	KnockBackForce.Normalize();
 	KnockBackForce = KnockBackForce * ConstValue::KNOCKBACK_SPEED;
 
-	m_pTarget->SetExternalForce(KnockBackForce);
-	m_pTarget->SetCanMove(false);
+	m_pTarget->HitBy(KnockBackForce, _pOther);
+}
 
+void Collider::OnCollision(Collider* _pOther)
+{
+	Hit(_pOther);
+}
+
+void Collider::BeginCollision(Collider* _pOther)
+{
+	Hit(_pOther);
 	m_iCollisionCount += 1;
 }
 
@@ -49,6 +56,8 @@ void Collider::FinalUpdate()
 
 void Collider::Render(HDC _memDC)
 {
+	if (m_bActive == false)
+		return;
 	GDIManager::GetInstance()->SetBrush(_memDC, BRUSH_TYPE::HOLLOW);
 	if (m_iCollisionCount > 0)
 		GDIManager::GetInstance()->SetPen(_memDC, PEN_TYPE::RED);

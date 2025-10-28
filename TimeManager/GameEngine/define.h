@@ -18,3 +18,11 @@ enum class OBJECT_GROUP
 	BULLET,
 	END
 };
+
+enum class COLLIDER_GROUP
+{
+	MONSTER,
+	PLAYABLE,
+	BULLET,
+	END
+};

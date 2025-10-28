@@ -17,37 +17,40 @@ CollisionManager::~CollisionManager()
 
 void CollisionManager::Init()
 {
-	for (int i = 0; i != static_cast<int>(OBJECT_GROUP::END); ++i)
+	for (int i = 0; i != static_cast<int>(COLLIDER_GROUP::END); ++i)
 	{
-		m_CollisionGroupList[i] = std::vector<bool>(i + 1, false);
+		m_ColliderGroupList[i] = std::vector<bool>(i + 1, false);
 	}
 }
 
 void CollisionManager::Update()
 {
-	for (int i = 0; i != static_cast<int>(OBJECT_GROUP::END); ++i)
+	for (int i = 0; i != static_cast<int>(COLLIDER_GROUP::END); ++i)
 	{
-		for (int j = 0; j < m_CollisionGroupList[i].size(); j++)
+		for (int j = 0; j < m_ColliderGroupList[i].size(); j++)
 		{
-			if (m_CollisionGroupList[i][j] == true)
-				CollisionCheckGroup(static_cast<OBJECT_GROUP>(i), static_cast<OBJECT_GROUP>(j));
+			if (m_ColliderGroupList[i][j] == true)
+				CollisionCheckGroup(static_cast<COLLIDER_GROUP>(i), static_cast<COLLIDER_GROUP>(j));
 		}
 	}
 }
 
-void CollisionManager::RegistCollisionGroup(OBJECT_GROUP _eFirst, OBJECT_GROUP _eSecond)
+void CollisionManager::RegistColliderGroup(COLLIDER_GROUP _eFirst, COLLIDER_GROUP _eSecond)
 {
 	if (_eFirst < _eSecond)
 	{
-		OBJECT_GROUP tmp = _eFirst;
+		COLLIDER_GROUP tmp = _eFirst;
 		_eFirst = _eSecond;
 		_eSecond = tmp;
 	}
-	m_CollisionGroupList[static_cast<int>(_eFirst)][static_cast<int>(_eSecond)] = true;
+	m_ColliderGroupList[static_cast<int>(_eFirst)][static_cast<int>(_eSecond)] = true;
 }
 
 bool CollisionManager::IsCollision(Collider* _pFirst, Collider* _pSecond)
 {
+	if (_pFirst->IsActive() == false || _pSecond->IsActive() == false)
+		return false;
+
 	Vector2 FirstPosition = _pFirst->GetPosition();
 	Vector2 FirstSize = _pFirst->GetSize();
 	Vector2 SecondPosition = _pSecond->GetPosition();
@@ -65,33 +68,33 @@ bool CollisionManager::IsCollision(Collider* _pFirst, Collider* _pSecond)
 	return false;
 }
 
-void CollisionManager::ReleaseCollisionGroup()
+void CollisionManager::ReleaseColliderGroup()
 {
-	for (int i = 0; i != static_cast<int>(OBJECT_GROUP::END); ++i)
+	for (int i = 0; i != static_cast<int>(COLLIDER_GROUP::END); ++i)
 	{
-		for (int j = 0; j < m_CollisionGroupList[i].size(); ++j)
-			m_CollisionGroupList[i][j] = false;
+		for (int j = 0; j < m_ColliderGroupList[i].size(); ++j)
+			m_ColliderGroupList[i][j] = false;
 	}
 }
 
-void CollisionManager::CollisionCheckGroup(OBJECT_GROUP _eFirst, OBJECT_GROUP _eSecond)
+void CollisionManager::CollisionCheckGroup(COLLIDER_GROUP _eFirst, COLLIDER_GROUP _eSecond)
 {
 	Scene* CurScene = SceneManager::GetInstance()->GetCurScene();
-	const std::vector<Object*>& FirstGroup = CurScene->GetObjectGroup(_eFirst);
-	const std::vector<Object*>& SecondGroup = CurScene->GetObjectGroup(_eSecond);
+	const std::vector<Collider*>& FirstGroup = CurScene->GetColliderGroup(_eFirst);
+	const std::vector<Collider*>& SecondGroup = CurScene->GetColliderGroup(_eSecond);
 
 	for (int i = 0; i < FirstGroup.size(); ++i)
 	{
-		if (FirstGroup[i]->GetCollider() == nullptr)
+		if (FirstGroup[i] == nullptr)
 			continue;
 		for (int j = 0; j < SecondGroup.size(); ++j)
 		{
 			if (FirstGroup[i] == SecondGroup[j])
 				continue;
-			if (SecondGroup[j]->GetCollider() == nullptr)
+			if (SecondGroup[j] == nullptr)
 				continue;
 
-			CollisionCheck(FirstGroup[i]->GetCollider(), SecondGroup[j]->GetCollider());
+			CollisionCheck(FirstGroup[i], SecondGroup[j]);
 		}
 	}
 }
