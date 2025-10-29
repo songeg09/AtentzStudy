@@ -44,9 +44,6 @@
     <Filter Include="Engine\03. Manager\TimerManager">
       <UniqueIdentifier>{a7706c73-f7ea-4f7e-a09c-67623b415732}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\04. Object\Player">
-      <UniqueIdentifier>{b4ff8ff1-da58-460a-8501-56dbe7a5727d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\06. Scene">
       <UniqueIdentifier>{30059140-1011-42a7-bc79-643dbfb6c298}</UniqueIdentifier>
     </Filter>
@@ -62,11 +59,17 @@
     <Filter Include="Engine\03. Manager\GDIManager">
       <UniqueIdentifier>{9313fcdc-ae14-489f-a976-3628f7a35c21}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\04. Object\Monster">
-      <UniqueIdentifier>{cae2e56b-3d61-45f0-9ab8-49310a595c6f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\03. Manager\CollisionManager">
       <UniqueIdentifier>{69ec1f4d-b29e-474d-826d-ce5f9837ffbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Object\Actor">
+      <UniqueIdentifier>{f3aa19f6-9394-4124-8700-12c84926a94b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Object\Actor\Monster">
+      <UniqueIdentifier>{cae2e56b-3d61-45f0-9ab8-49310a595c6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Object\Actor\Player">
+      <UniqueIdentifier>{b4ff8ff1-da58-460a-8501-56dbe7a5727d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -120,7 +123,7 @@
       <Filter>Engine\04. Object</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Engine\04. Object\Player</Filter>
+      <Filter>Engine\04. Object\Actor\Player</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Engine\06. Scene</Filter>
@@ -138,10 +141,13 @@
       <Filter>Engine\03. Manager\GDIManager</Filter>
     </ClInclude>
     <ClInclude Include="Monster.h">
-      <Filter>Engine\04. Object\Monster</Filter>
+      <Filter>Engine\04. Object\Actor\Monster</Filter>
     </ClInclude>
     <ClInclude Include="CollisionManager.h">
       <Filter>Engine\03. Manager\CollisionManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>Engine\04. Object\Actor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -187,7 +193,7 @@
       <Filter>Engine\04. Object</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Engine\04. Object\Player</Filter>
+      <Filter>Engine\04. Object\Actor\Player</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>Engine\06. Scene</Filter>
@@ -205,10 +211,13 @@
       <Filter>Engine\03. Manager\GDIManager</Filter>
     </ClCompile>
     <ClCompile Include="Monster.cpp">
-      <Filter>Engine\04. Object\Monster</Filter>
+      <Filter>Engine\04. Object\Actor\Monster</Filter>
     </ClCompile>
     <ClCompile Include="CollisionManager.cpp">
       <Filter>Engine\03. Manager\CollisionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Engine\04. Object\Actor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

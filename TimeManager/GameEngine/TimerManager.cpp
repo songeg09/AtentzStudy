@@ -42,6 +42,5 @@ void TimerManager::Update()
 		m_iFPS = m_iCallCount;
 		m_dAccTime = 0.0;
 		m_iCallCount = 0;
-		std::wstring message = std::format(L"FPS : {}", m_iFPS);
 	}
 }

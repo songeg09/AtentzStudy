@@ -1,6 +1,5 @@
 #pragma once
 
-class Collider;
 class Object;
 class Scene
 {
@@ -9,7 +8,6 @@ protected:
 	Vector2					m_vec2WindowCenterPosition;
 	Vector2					m_vec2WindowSize;
 	std::vector<Object*>	m_arrObjects[static_cast<int>(OBJECT_GROUP::END)];
-	std::vector<Collider*>  m_arrColliders[static_cast<int>(COLLIDER_GROUP::END)];
 	std::wstring				m_strName;
 public:
 	Scene(std::wstring _strName);
@@ -19,14 +17,11 @@ public:
 	virtual void Render(HDC _memDC);
 	virtual void Init() = 0;
 	virtual void Release();
-	const std::vector<Object*>& GetObjectGroup(OBJECT_GROUP _eObjectGrup) { return m_arrObjects[static_cast<int>(_eObjectGrup)]; }
-	const std::vector<Collider*>& GetColliderGroup(COLLIDER_GROUP _eObjectGrup) { return m_arrColliders[static_cast<int>(_eObjectGrup)]; }
+
+	inline const std::vector<Object*>& GetObjectGroup(OBJECT_GROUP _eObjectGrup) { return m_arrObjects[static_cast<int>(_eObjectGrup)]; }
 	void SetWindowSize(int _iWidth, int _iHeight);
 	void AddObject(Object* _object, OBJECT_GROUP _eGroup);
-	void AddCollider(Collider* _collider, COLLIDER_GROUP _eGroup);
-	Vector2 GetWindowSize() { return m_vec2WindowSize; }
-	void SetName(const std::wstring _strName) { m_strName = _strName; }
-
-	Object* GetPlayer();
+	inline Vector2 GetWindowSize() { return m_vec2WindowSize; }
+	inline void SetName(const std::wstring _strName) { m_strName = _strName; }
 };
 

@@ -6,12 +6,12 @@
 #include "TimerManager.h"
 #include "Core.h"
 #include "Collider.h"
+#include "Monster.h"
 
 Player::Player()
-	: Object(ConstValue::PLAYER_SPEED)
 {
-	Object::m_eCurAnimation = ANIMATION::IDLE;
-	Object::m_eDirection = DIRECTION::DOWN;
+	m_bInput = true;
+	m_pAttackCollider = nullptr;
 }
 
 Player::~Player()
@@ -20,124 +20,97 @@ Player::~Player()
 
 void Player::Init(Vector2 _vec2Position)
 {
-	Object::Init(_vec2Position);
-
-	// 캐릭터 콜라이더
-	Collider* collider = new Collider;
-	collider->SetTarget(this);
-	collider->SetSize(Vector2{ 30.0f, 40.0f });
-	collider->SetOffsetPosition(Vector2{ 0.0f,-6.0f });
-	collider->SetActive(true);
-	m_pColliders.push_back(collider);
-	SceneManager::GetInstance()->GetCurScene()->AddCollider(collider, COLLIDER_GROUP::PLAYABLE);
-
-	// 칼 콜라이더
-	collider = new Collider;
-	collider->SetTarget(this);
-	collider->SetSize(Vector2{ 20.0f, 20.0f });
-	collider->SetOffsetPosition(Vector2{ 0.0f,0.0f });
-	collider->SetActive(false);
-	m_pColliders.push_back(collider);
-	SceneManager::GetInstance()->GetCurScene()->AddCollider(collider, COLLIDER_GROUP::BULLET);
-	m_Sword = collider;
-
+	// 키 등록
 	InputManager::GetInstance()->RegistKey(VK_LEFT);
 	InputManager::GetInstance()->RegistKey(VK_RIGHT);
 	InputManager::GetInstance()->RegistKey(VK_UP);
 	InputManager::GetInstance()->RegistKey(VK_DOWN);
 	InputManager::GetInstance()->RegistKey(VK_SPACE);
 
-	std::vector<AnimNode> vecAnimationList;
+	CreateCollider(true, Vector2{ 40.f,40.f }, Vector2{ 0.0f,0.0f });
+	m_pAttackCollider = CreateCollider(false, Vector2{ 40.f, 40.f }, Vector2(0.0f, 20.f));
+	m_pAttackCollider->SetBeginCollisionCallBack(
+		std::bind([this](Collider* _pOther)
+			{
+				Monster* TargetMonster = dynamic_cast<Monster*>(_pOther->GetTarget());
+				if (TargetMonster == nullptr)
+					return;
+				Vector2 ForceDirection = _pOther->GetPosition() - GetPosition();
+				ForceDirection.Normalize();
+				TargetMonster->AddForce(ForceDirection * 300.0f);
+			}, std::placeholders::_1));
 
-	for (int i = DIRECTION::START; i != DIRECTION::END; ++i)
-	{
-		//방향별 IDLE 애니메이션
-		vecAnimationList.clear();
-		for (int j = TEXTURE_TYPE::PLAYER_IDLE_START; j <= TEXTURE_TYPE::PLAYER_IDLE_END; j++)
-		{
-			vecAnimationList.push_back(AnimNode{ ResourceManager::GetInstance()->LoadTexture(static_cast<TEXTURE_TYPE>(j),static_cast<DIRECTION>(i)),nullptr });
+	// 애니메이션 설정
+	Actor::SetPosition(_vec2Position);
+	Actor::ResizeAnimation(ANIMATION::END);
+	Actor::InitAnimation(ANIMATION::IDLE, TEXTURE_TYPE::PLAYER_IDLE_START, TEXTURE_TYPE::PLAYER_IDLE_END);
+	Actor::InitAnimation(ANIMATION::RUN, TEXTURE_TYPE::PLAYER_RUN_START, TEXTURE_TYPE::PLAYER_RUN_END);
+	Actor::InitAnimation(ANIMATION::ATTACK, TEXTURE_TYPE::PLAYER_ATTACK_START, TEXTURE_TYPE::PLAYER_ATTACK_END, 0.5f, ANIMATION_TYPE::ONCE);
+	Actor::SetAnimationEvent(ANIMATION::ATTACK, 1,
+		[this]() {
+			m_pAttackCollider->SetEnable(true);
 		}
-		m_AnimationList[i][ANIMATION::IDLE].Init(vecAnimationList, ANIMATION_TYPE::LOOP, ConstValue::fAnimationPlayerSpeed, ANCHOR::CENTER);
-
-		//방향별 이동 애니메이션
-		vecAnimationList.clear();
-		for (int j = TEXTURE_TYPE::PLAYER_RUN_START; j <= TEXTURE_TYPE::PLAYER_RUN_END; ++j)
-		{
-			vecAnimationList.push_back(AnimNode{ ResourceManager::GetInstance()->LoadTexture(static_cast<TEXTURE_TYPE>(j),static_cast<DIRECTION>(i)),nullptr });
+	);
+	Actor::SetAnimationEvent(ANIMATION::ATTACK, 2,
+		[this]() {
+			m_pAttackCollider->SetEnable(false);
 		}
-		m_AnimationList[i][ANIMATION::RUN].Init(vecAnimationList, ANIMATION_TYPE::LOOP, ConstValue::fAnimationPlayerSpeed, ANCHOR::CENTER);
+	);
+	Actor::SetAnimationEvent(ANIMATION::ATTACK, 3,
+		[this]() {
+			m_bInput = true;
+			Actor::SetAnimation(ANIMATION::IDLE);
+		}
+	);
+	Actor::SetAnimation(ANIMATION::IDLE);
 	
-		//방향별 공격 애니메이션
-		vecAnimationList.clear();
-		for (int j = TEXTURE_TYPE::PLAYER_ATTACK_START; j <= TEXTURE_TYPE::PLAYER_ATTACK_END; ++j)
-		{
-			vecAnimationList.push_back(AnimNode{ ResourceManager::GetInstance()->LoadTexture(static_cast<TEXTURE_TYPE>(j),static_cast<DIRECTION>(i)),nullptr });
-		}
- 		vecAnimationList[0].m_callBack = std::bind(&Player::BeginAttack, this);
-		vecAnimationList[vecAnimationList.size() - 1].m_callBack = std::bind(&Player::EndAttack, this);
-		m_AnimationList[i][ANIMATION::ATTACK].Init(vecAnimationList, ANIMATION_TYPE::ONCE, ConstValue::fAnimationPlayerSpeed, ANCHOR::CENTER);
-		
-	}
-	
-	m_eCurAnimation = ANIMATION::IDLE;
+	// 속도 설정
+	Actor::SetMoveSpeed(200.0f);
 }
 
-void Player::Action()
+void Player::Update()
 {
+  	Actor::Update();
+	Input();
+}
+
+void Player::Render(HDC _memDC)
+{
+	Actor::Render(_memDC);
+}
+
+void Player::Attack(Collider* _pOther)
+{
+}
+
+void Player::Input()
+{
+	if (m_bInput == false)
+		return;
+
 	if (InputManager::GetInstance()->GetKeyState(VK_SPACE) == KEY_STATE::DOWN)
 	{
-		m_eCurAnimation = ANIMATION::ATTACK;
-		m_AnimationList[m_eDirection][m_eCurAnimation].Reset();
+		m_bInput = false;
+		Actor::SetAnimation(ANIMATION::ATTACK);
 	}
-	else if (m_eCurAnimation != ANIMATION::ATTACK)
+	else
 	{
 		Vector2 vec2MoveForce;
 		if (InputManager::GetInstance()->GetKeyState(VK_LEFT) == KEY_STATE::PRESS)
+			vec2MoveForce.m_fx += -1.0f;
+		if (InputManager::GetInstance()->GetKeyState(VK_RIGHT) == KEY_STATE::PRESS)
+			vec2MoveForce.m_fx += 1.0f;
+		if (InputManager::GetInstance()->GetKeyState(VK_UP) == KEY_STATE::PRESS)
+			vec2MoveForce.m_fy += -1.0f;
+		if (InputManager::GetInstance()->GetKeyState(VK_DOWN) == KEY_STATE::PRESS)
+			vec2MoveForce.m_fy += 1.0f;
+
+		if (vec2MoveForce.isValid() == true)
 		{
-			vec2MoveForce.m_fx = m_fMoveSpeed * TimerManager::GetInstance()->GetdDeltaTime() * -1.0f;
-			m_eDirection = DIRECTION::LEFT;
-			m_Sword->SetOffsetPosition({ -20.f,-6.0f });
-		}
-		else if (InputManager::GetInstance()->GetKeyState(VK_RIGHT) == KEY_STATE::PRESS)
-		{
-			vec2MoveForce.m_fx = m_fMoveSpeed * TimerManager::GetInstance()->GetdDeltaTime() * 1.0f;
-			m_eDirection = DIRECTION::RIGHT;
-			m_Sword->SetOffsetPosition({ 20.f,-6.0f });
-		}
-		else if (InputManager::GetInstance()->GetKeyState(VK_UP) == KEY_STATE::PRESS)
-		{
-			vec2MoveForce.m_fy = m_fMoveSpeed * TimerManager::GetInstance()->GetdDeltaTime() * -1.0f;
-			m_eDirection = DIRECTION::UP;
-			m_Sword->SetOffsetPosition({ 0.f,-26.f });
-		}
-		else if (InputManager::GetInstance()->GetKeyState(VK_DOWN) == KEY_STATE::PRESS)
-		{
-			vec2MoveForce.m_fy = m_fMoveSpeed * TimerManager::GetInstance()->GetdDeltaTime() * 1.0f;
-			m_eDirection = DIRECTION::DOWN;
-			m_Sword->SetOffsetPosition({ 0.f,14.f });
-		}
-		if (vec2MoveForce.m_fx != 0.0f || vec2MoveForce.m_fy != 0.0f)
-		{
-			Vector2 vec2CurPosition = GetPosition();
-			vec2CurPosition += vec2MoveForce;
-			SetPosition(vec2CurPosition);
-			m_eCurAnimation = ANIMATION::RUN;
+			Actor::Move(vec2MoveForce);
+			Actor::SetAnimation(ANIMATION::RUN);
 		}
 		else
-		{
-			m_eCurAnimation = ANIMATION::IDLE;
-		}
+			Actor::SetAnimation(ANIMATION::IDLE);
 	}
-}
-
-
-void Player::BeginAttack()
-{
-	m_Sword->SetActive(true);
-}
-
-void Player::EndAttack()
-{
-	m_Sword->SetActive(false);
-	SetAnimation(ANIMATION::IDLE);
 }

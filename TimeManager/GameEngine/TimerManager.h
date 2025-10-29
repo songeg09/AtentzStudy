@@ -13,8 +13,8 @@ private:
 public:
 	void Init();
 	void Update();
-	double GetdDeltaTime() { return m_dDeltaTime; }
-	float GetfDeltaTime() { return (float)m_dDeltaTime; }
-	unsigned intGetFPS() { return m_iFPS; }
+	inline double GetdDeltaTime() { return m_dDeltaTime; }
+	inline float GetfDeltaTime() { return (float)m_dDeltaTime; }
+	inline unsigned intGetFPS() { return m_iFPS; }
 };
 

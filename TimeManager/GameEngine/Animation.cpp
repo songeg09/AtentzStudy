@@ -22,11 +22,31 @@ void Animation::Reset()
 	m_fAccTime = 0.0f;
 }
 
-void Animation::Init(std::vector<AnimNode> _vecList, ANIMATION_TYPE _eType, float _fSpeed, ANCHOR _eAnchor)
+void Animation::Init(DIRECTION _eDirection, int _iStartTextureIndex, int _iEndTextureIndex, ANIMATION_TYPE _eType, float _fSpeed, ANCHOR _eAnchor)
 {
-	m_vecList = _vecList;
+	m_vecList.clear();
+	m_vecList.resize(_iEndTextureIndex - _iStartTextureIndex);
+	for (int j = 0; j < m_vecList.size(); ++j)
+	{
+		m_vecList[j] = AnimNode{ ResourceManager::GetInstance()->LoadTexture(static_cast<TEXTURE_TYPE>(j + _iStartTextureIndex),_eDirection),nullptr };
+	}
 	m_eType = _eType;
-	m_fSpeed = _fSpeed;
+	m_fSpeed = _fSpeed / static_cast<float>(m_vecList.size());
+	m_eAnchor = _eAnchor;
+	m_iCurIndex = 0;
+	m_fAccTime = 0.0f;
+}
+
+void Animation::Init(int _iStartTextureIndex, int _iEndTextureIndex, ANIMATION_TYPE _eType, float _fSpeed, ANCHOR _eAnchor)
+{
+	m_vecList.clear();
+	m_vecList.resize(_iEndTextureIndex - _iStartTextureIndex);
+	for (int j = 0; j < m_vecList.size(); ++j)
+	{
+		m_vecList[j] = AnimNode{ ResourceManager::GetInstance()->LoadTexture(static_cast<TEXTURE_TYPE>(j + _iStartTextureIndex)),nullptr };
+	}
+	m_eType = _eType;
+	m_fSpeed = _fSpeed / static_cast<float>(m_vecList.size());
 	m_eAnchor = _eAnchor;
 	m_iCurIndex = 0;
 	m_fAccTime = 0.0f;
@@ -34,19 +54,17 @@ void Animation::Init(std::vector<AnimNode> _vecList, ANIMATION_TYPE _eType, floa
 
 void Animation::Update()
 {
-	if (m_eType == ANIMATION_TYPE::ONCE && m_iCurIndex >= m_vecList.size())
+	if (m_eType == ANIMATION_TYPE::ONCE && m_iCurIndex >= m_vecList.size() - 1)
 		return;
 	m_fAccTime += TimerManager::GetInstance()->GetfDeltaTime();
 	if (m_fAccTime >= m_fSpeed)
 	{
+		++m_iCurIndex;
+		if (m_eType == ANIMATION_TYPE::LOOP && m_iCurIndex >= m_vecList.size())
+			m_iCurIndex = 0;
 		m_fAccTime = 0;
 		if (m_vecList[m_iCurIndex].m_callBack != nullptr)
 			m_vecList[m_iCurIndex].m_callBack();
-		
-		if (m_eType == ANIMATION_TYPE::LOOP && m_iCurIndex + 1 >= m_vecList.size())
-			m_iCurIndex = 0;
-		else
-			m_iCurIndex++;
 	}
 }
 
@@ -70,6 +88,13 @@ void Animation::Render(HDC _memDC, Vector2 _vec2Position)
 	}
 	if (m_vecList.size() == 0)
 		return;
-	TransparentBlt(_memDC, _vec2Position.m_fx, _vec2Position.m_fy, iWidth, iHeight,
+	TransparentBlt(_memDC, _vec2Position.m_fx - iWidth / 2, _vec2Position.m_fy - iHeight / 2, iWidth * 2, iHeight * 2,
 		m_vecList[m_iCurIndex].m_pTexture->GetDC(), 0, 0, iWidth, iHeight, RGB(255, 255, 255));
 }
+
+void Animation::SetEvent(int _iTextureIndex, std::function<void()> _pCallBack)
+{
+	assert(_iTextureIndex < m_vecList.size());
+	m_vecList[_iTextureIndex].m_callBack = _pCallBack;
+}
+

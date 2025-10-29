@@ -25,8 +25,6 @@ std::wstring ResourceManager::GetTextureFileName(TEXTURE_TYPE _eTextureType, DIR
 	case TEXTURE_TYPE::PLAYER_IDLE_4:			return std::format(L"character_idle_{}_03.bmp", GetDirectionString(_eDirection));
 	case TEXTURE_TYPE::PLAYER_IDLE_5:			return std::format(L"character_idle_{}_04.bmp", GetDirectionString(_eDirection));
 	case TEXTURE_TYPE::PLAYER_IDLE_6:			return std::format(L"character_idle_{}_05.bmp", GetDirectionString(_eDirection));
-	case TEXTURE_TYPE::PLAYER_IDLE_7:			return std::format(L"character_idle_{}_06.bmp", GetDirectionString(_eDirection));
-	case TEXTURE_TYPE::PLAYER_IDLE_8:			return std::format(L"character_idle_{}_07.bmp", GetDirectionString(_eDirection));
 																   
 	case TEXTURE_TYPE::PLAYER_RUN_1:			return std::format(L"character_run_{}_00.bmp", GetDirectionString(_eDirection));
 	case TEXTURE_TYPE::PLAYER_RUN_2:			return std::format(L"character_run_{}_01.bmp", GetDirectionString(_eDirection));
@@ -34,14 +32,11 @@ std::wstring ResourceManager::GetTextureFileName(TEXTURE_TYPE _eTextureType, DIR
 	case TEXTURE_TYPE::PLAYER_RUN_4:			return std::format(L"character_run_{}_03.bmp", GetDirectionString(_eDirection));
 	case TEXTURE_TYPE::PLAYER_RUN_5:			return std::format(L"character_run_{}_04.bmp", GetDirectionString(_eDirection));
 	case TEXTURE_TYPE::PLAYER_RUN_6:			return std::format(L"character_run_{}_05.bmp", GetDirectionString(_eDirection));
-	case TEXTURE_TYPE::PLAYER_RUN_7:			return std::format(L"character_run_{}_06.bmp", GetDirectionString(_eDirection));
-	case TEXTURE_TYPE::PLAYER_RUN_8:			return std::format(L"character_run_{}_07.bmp", GetDirectionString(_eDirection));
 																   
 	case TEXTURE_TYPE::PLAYER_ATTACK_1:			return std::format(L"character_attack_{}_00.bmp", GetDirectionString(_eDirection));
 	case TEXTURE_TYPE::PLAYER_ATTACK_2:			return std::format(L"character_attack_{}_01.bmp", GetDirectionString(_eDirection));
 	case TEXTURE_TYPE::PLAYER_ATTACK_3:			return std::format(L"character_attack_{}_02.bmp", GetDirectionString(_eDirection));
 	case TEXTURE_TYPE::PLAYER_ATTACK_4:			return std::format(L"character_attack_{}_03.bmp", GetDirectionString(_eDirection));
-	case TEXTURE_TYPE::PLAYER_ATTACK_5:			return std::format(L"character_attack_{}_04.bmp", GetDirectionString(_eDirection));
 
 	case TEXTURE_TYPE::MONSTER_IDLE_1:			return std::format(L"monster2_{}_00.bmp", GetDirectionString(_eDirection));
 	case TEXTURE_TYPE::MONSTER_IDLE_2:			return std::format(L"monster2_{}_01.bmp", GetDirectionString(_eDirection));

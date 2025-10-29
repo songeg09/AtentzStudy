@@ -16,14 +16,14 @@ class CollisionManager
 	SINGLETON(CollisionManager)
 private:
 	std::map<unsigned long long, bool> m_PrevCollision;
-	std::vector<bool> m_ColliderGroupList[static_cast<int>(COLLIDER_GROUP::END)];
+	std::vector<bool> m_CollisionGroupList[static_cast<int>(OBJECT_GROUP::END)];
 public:
 	void Init();
 	void Update();
-	void RegistColliderGroup(COLLIDER_GROUP _eFirst, COLLIDER_GROUP _eSecond);
+	void RegistCollisionGroup(OBJECT_GROUP _eFirst, OBJECT_GROUP _eSecond);
 	bool IsCollision(Collider* _pFirst, Collider* _pSecond);
-	void ReleaseColliderGroup();
-	void CollisionCheckGroup(COLLIDER_GROUP _eFirst, COLLIDER_GROUP _eSecond);
-	void CollisionCheck(Collider* _pFirst, Collider* _pSecond);
+	void ReleaseCollisionGroup();
+	void CollisionCheckGroup(OBJECT_GROUP _eFirst, OBJECT_GROUP _eSecond);
+	void CollisionCheck(const std::list<Collider*>& _pFirst, const std::list<Collider*>& _pSecond);
 };
 

@@ -32,6 +32,20 @@ void Core::Update()
 	CollisionManager::GetInstance()->Update();
 }
 
+void Core::Render()
+{
+	if (SceneManager::GetInstance()->GetCurScene() == nullptr)
+		return;
+	SceneManager::GetInstance()->Render(m_hBackDC);
+
+	std::wstring FPSMessage = std::format(L"FPS : {}", TimerManager::GetInstance()->intGetFPS());
+	TextOutW(m_hBackDC, 0, 0, FPSMessage.c_str(), FPSMessage.length());
+
+	Vector2 WindowSize = SceneManager::GetInstance()->GetCurScene()->GetWindowSize();
+	BitBlt(m_hDC, 0, 0, WindowSize.m_fx, WindowSize.m_fy, m_hBackDC, 0, 0, SRCCOPY);
+}
+
+
 void Core::Init(HWND _hWnd)
 {
 	m_hWnd = _hWnd;
@@ -50,12 +64,6 @@ void Core::Init(HWND _hWnd)
 	CreateBackDC();
 }
 
-void Core::GameLoop()
-{
-	Update();
-	Render();
-}
-
 void Core::CreateBackDC()
 {
 	if (m_hBackBitMap != nullptr)
@@ -72,17 +80,9 @@ void Core::CreateBackDC()
 	}
 }
 
-
-
-void Core::Render()
+void Core::GameLoop()
 {
-	if (SceneManager::GetInstance()->GetCurScene() == nullptr)
-		return;
-	SceneManager::GetInstance()->Render(m_hBackDC);
-
-	std::wstring FPSMessage = std::format(L"FPS : {}", TimerManager::GetInstance()->intGetFPS());
-	TextOutW(m_hBackDC, 0, 0, FPSMessage.c_str(), FPSMessage.length());
-
-	Vector2 WindowSize = SceneManager::GetInstance()->GetCurScene()->GetWindowSize();
-	BitBlt(m_hDC, 0, 0, WindowSize.m_fx, WindowSize.m_fy, m_hBackDC, 0, 0, SRCCOPY);
+	Update();
+	Render();
 }
+

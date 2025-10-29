@@ -16,5 +16,5 @@ void PathManager::Init()
 	int i = length - 1;
 	while (m_szContentsPath[i] != L'\\') { --i; }
 	m_szContentsPath[i] = NULL;
-	wcscat_s(m_szContentsPath, L"\\bin\\content\\");
+	wcscat_s(m_szContentsPath, ConstValue::strResourcePath.c_str());
 }

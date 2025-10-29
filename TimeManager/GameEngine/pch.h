@@ -10,6 +10,7 @@
 #include<iostream>
 #include<functional>
 #include<math.h>
+#include<time.h>
 #include"define.h"
 #include"struct.h"
 #include"const.h"

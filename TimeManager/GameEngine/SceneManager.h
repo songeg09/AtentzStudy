@@ -17,6 +17,7 @@ public:
 	void Init();
 	void Update();
 	void Render(HDC _memDC);
+
 	void SceneChange(SCENE_TYPE _eSceneType);
 	Scene* GetCurScene() {
 		if (m_eCurScene == SCENE_TYPE::END)

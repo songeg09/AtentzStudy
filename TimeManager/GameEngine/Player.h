@@ -1,24 +1,25 @@
 #pragma once
-#include "Object.h"
+#include "Actor.h"
 #include "ResourceManager.h"
-#include "Animation.h"
-class Player : public Object
+class Player : public Actor
 {
+	enum ANIMATION
+	{
+		IDLE,
+		RUN,
+		ATTACK,
+		END,
+	};
 	
 private:
-	Collider* m_Sword;
-
+	bool m_bInput;
+	Collider* m_pAttackCollider;
 public:
 	Player();
 	~Player();
-	// Object을(를) 통해 상속됨
-	
 	virtual void Init(Vector2 _vec2Position);
-
-	virtual void Action() override;
-
-	void BeginAttack();
-	void EndAttack();
-
-	Collider* GetSword() { return m_Sword; }
+	virtual void Update() override;
+	virtual void Render(HDC _memDC) override;
+	virtual void Attack(Collider* _pOther) override;
+	void Input();
 };

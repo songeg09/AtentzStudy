@@ -1,4 +1,5 @@
 #pragma once
+#include "ResourceManager.h"
 class Texture;
 
 struct AnimNode
@@ -34,9 +35,11 @@ public:
 	Animation();
 	~Animation();
 	void Reset();
-	void Init(std::vector<AnimNode> _vecList, ANIMATION_TYPE _eType, float _fSpeed, ANCHOR _eAnchor);
+	void Init(DIRECTION _eDirection, int _iStartTextureIndex, int _iEndTextureIndex, ANIMATION_TYPE _eType, float _fSpeed, ANCHOR _eAnchor);
+	void Init(int _iStartTextureIndex, int _iEndTextureIndex, ANIMATION_TYPE _eType, float _fSpeed, ANCHOR _eAnchor);
 	void Update();
 	void Render(HDC _memDC, Vector2 _vec2Position);
+	void SetEvent(int _iTextureIndex, std::function<void()> _pCallBack);
 	bool GetLive()
 	{
 		if (m_eType == ANIMATION_TYPE::LOOP)

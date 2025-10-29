@@ -26,7 +26,7 @@ void Scene::Release()
 		}
 		m_arrObjects[i].clear();
 	}
-	CollisionManager::GetInstance()->ReleaseColliderGroup();
+	CollisionManager::GetInstance()->ReleaseCollisionGroup();
 }
 
 void Scene::SetWindowSize(int _iWidth, int _iHeight)
@@ -44,18 +44,6 @@ void Scene::SetWindowSize(int _iWidth, int _iHeight)
 void Scene::AddObject(Object* _object, OBJECT_GROUP _eGroup)
 {
 	m_arrObjects[static_cast<int>(_eGroup)].push_back(_object);
-}
-
-void Scene::AddCollider(Collider* _collider, COLLIDER_GROUP _eGroup)
-{
-	m_arrColliders[static_cast<int>(_eGroup)].push_back(_collider);
-}
-
-Object* Scene::GetPlayer()
-{
-	if(m_arrObjects[static_cast<int>(OBJECT_GROUP::PLAYABLE)].size() == 0)
-		return nullptr;
-	return m_arrObjects[static_cast<int>(OBJECT_GROUP::PLAYABLE)][0];
 }
 
 void Scene::Update()
