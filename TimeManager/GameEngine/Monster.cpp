@@ -20,7 +20,7 @@ void Monster::Init(Vector2 _vec2Position)
 	Actor::SetAnimation(ANIMATION::IDLE);
 
 	Actor::SetMoveSpeed(200.0f);
-	CreateCollider(true, Vector2{ 40.0f, 40.0f }, Vector2{ 0.0f,30.0f });
+	CreateRectCollider(true, Vector2{ 40.0f, 40.0f }, Vector2{ 0.0f,30.0f });
 }
 
 void Monster::Update()

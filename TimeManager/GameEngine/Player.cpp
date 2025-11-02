@@ -8,27 +8,32 @@
 #include "Collider.h"
 #include "Monster.h"
 
+
 Player::Player()
 {
 	m_bInput = true;
 	m_pAttackCollider = nullptr;
+	m_Skill = nullptr;
 }
 
 Player::~Player()
 {
+	if (m_Skill != nullptr)
+		delete m_Skill;
 }
 
 void Player::Init(Vector2 _vec2Position)
 {
 	// 키 등록
+	SetActorType(ACTOR_TYPE::PLAYER);
 	InputManager::GetInstance()->RegistKey(VK_LEFT);
 	InputManager::GetInstance()->RegistKey(VK_RIGHT);
 	InputManager::GetInstance()->RegistKey(VK_UP);
 	InputManager::GetInstance()->RegistKey(VK_DOWN);
 	InputManager::GetInstance()->RegistKey(VK_SPACE);
 
-	CreateCollider(true, Vector2{ 40.f,40.f }, Vector2{ 0.0f,0.0f });
-	m_pAttackCollider = CreateCollider(false, Vector2{ 40.f, 40.f }, Vector2(0.0f, 20.f));
+	CreateCircleCollider(true, 40.f);\
+	m_pAttackCollider = CreateRectCollider(false, Vector2{ 40.f, 40.f }, Vector2(0.0f, 20.f));
 	m_pAttackCollider->SetBeginCollisionCallBack(
 		std::bind([this](Collider* _pOther)
 			{
@@ -66,6 +71,8 @@ void Player::Init(Vector2 _vec2Position)
 	
 	// 속도 설정
 	Actor::SetMoveSpeed(200.0f);
+
+	m_Skill = new CircleDamageSkill(1, this, 'Q');
 }
 
 void Player::Update()
@@ -85,6 +92,8 @@ void Player::Attack(Collider* _pOther)
 
 void Player::Input()
 {
+	m_Skill->Input();
+
 	if (m_bInput == false)
 		return;
 

@@ -1,6 +1,11 @@
 #pragma once
 #include "Object.h"
 #include "Animation.h"
+enum class ACTOR_TYPE
+{
+	PLAYER,
+	MONSTER
+};
 
 class Actor : public Object
 {
@@ -11,6 +16,7 @@ private:
 	bool					m_bMovable;
 	float					m_fMoveSpeed;
 	Vector2					m_vec2Force;
+	ACTOR_TYPE m_eActorType;
 
 public:
 	Actor();
@@ -20,7 +26,10 @@ public:
 	inline bool IsMovable() { return m_bMovable == true; }
 	inline void AddForce(Vector2 _vec2Force) { m_vec2Force += _vec2Force; }
 	inline void SetForce(Vector2 _vec2Force) { m_vec2Force = _vec2Force; }
+	inline void SetVelocity(Vector2 _vec2Force) { m_vec2Force = _vec2Force; }
 	inline void ResetForce() { m_vec2Force = {}; }
+	inline void SetActorType(ACTOR_TYPE _eActorType) { m_eActorType = _eActorType; }
+	inline ACTOR_TYPE GetActorType() { return m_eActorType; }
 
 	void Update() override;
 	void Render(HDC _memDC) override;
@@ -36,6 +45,8 @@ protected:
 
 	inline void SetDirection(DIRECTION _eDirection) { m_eDirection = _eDirection; }
 	inline void SetMoveSpeed(float _fMoveSpeed) { m_fMoveSpeed = _fMoveSpeed; }
+
+	
 
 	void Move(Vector2 _vec2Force);
 	void ResizeAnimation(int _iSize);

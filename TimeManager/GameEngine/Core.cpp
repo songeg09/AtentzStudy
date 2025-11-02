@@ -6,7 +6,7 @@
 #include "Scene.h"
 #include "TimerManager.h"
 #include "CollisionManager.h"
-
+#include "ResourceManager.h"
 Core::Core()
 {
 	m_hBackBitMap = nullptr;
@@ -56,6 +56,8 @@ void Core::Init(HWND _hWnd)
 	InputManager::GetInstance()->Init();
 
 	PathManager::GetInstance()->Init();
+
+	ResourceManager::GetInstance()->Init();
 
 	CollisionManager::GetInstance()->Init();
 

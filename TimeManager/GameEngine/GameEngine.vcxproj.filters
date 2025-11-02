@@ -71,6 +71,27 @@
     <Filter Include="Engine\04. Object\Actor\Player">
       <UniqueIdentifier>{b4ff8ff1-da58-460a-8501-56dbe7a5727d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\09. Skill">
+      <UniqueIdentifier>{394d3efe-2b0f-408b-8ef7-41064a98dbe2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Resource\Data">
+      <UniqueIdentifier>{70ddc61b-40b7-4fbb-ad7a-4a5e5b0244b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Resource\Data\CircleDamageSkillData">
+      <UniqueIdentifier>{5d1ff0f2-8d69-4853-93e6-9c9eb55632f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Resource\Data\CircleDamageZoneData">
+      <UniqueIdentifier>{096555a4-10ba-4f59-87f7-3906454f53ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Object\SkillObject">
+      <UniqueIdentifier>{a39004ff-eefa-4199-82e9-894374e00aa2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Object\SkillObject\CircleDamageZone">
+      <UniqueIdentifier>{f0ec8e59-4500-4528-a088-3b2b53dbe35b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Object\SkillObject\RectDamageZone">
+      <UniqueIdentifier>{b05c2344-f808-42fc-8620-92cf9682959c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -149,6 +170,24 @@
     <ClInclude Include="Actor.h">
       <Filter>Engine\04. Object\Actor</Filter>
     </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>Engine\09. Skill</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleDamageSkillData.h">
+      <Filter>Engine\05. Resource\Data\CircleDamageSkillData</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.h">
+      <Filter>Engine\05. Resource\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleDamageZoneData.h">
+      <Filter>Engine\05. Resource\Data\CircleDamageZoneData</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillObject.h">
+      <Filter>Engine\04. Object\SkillObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleDamageZone.h">
+      <Filter>Engine\04. Object\SkillObject\CircleDamageZone</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameEngine.rc">
@@ -218,6 +257,24 @@
     </ClCompile>
     <ClCompile Include="Actor.cpp">
       <Filter>Engine\04. Object\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Skill.cpp">
+      <Filter>Engine\09. Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.cpp">
+      <Filter>Engine\05. Resource\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleDamageSkillData.cpp">
+      <Filter>Engine\05. Resource\Data\CircleDamageSkillData</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleDamageZoneData.cpp">
+      <Filter>Engine\05. Resource\Data\CircleDamageZoneData</Filter>
+    </ClCompile>
+    <ClCompile Include="SkillObject.cpp">
+      <Filter>Engine\04. Object\SkillObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleDamageZone.cpp">
+      <Filter>Engine\04. Object\SkillObject\CircleDamageZone</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

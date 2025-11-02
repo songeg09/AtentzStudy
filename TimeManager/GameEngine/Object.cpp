@@ -32,11 +32,20 @@ void Object::Init(Vector2 _vec2Position)
 	SetPosition(_vec2Position);
 }
 
-Collider* Object::CreateCollider(bool _eEnabled, Vector2 _vecSize, Vector2 _vecOffset)
+Collider* Object::CreateRectCollider(bool _eEnabled, Vector2 _vecSize, Vector2 _vecOffset)
 {
-	Collider* collider = new Collider;
+	RectCollider* collider = new RectCollider;
 	collider->SetTarget(this);
 	collider->Init(_eEnabled, _vecSize, _vecOffset);
+	m_pColliderList.push_back(collider);
+	return collider;
+}
+
+Collider* Object::CreateCircleCollider(bool _eEnabled, float _fRadius, Vector2 _vecOffset)
+{
+	CircleCollider* collider = new CircleCollider;
+	collider->SetTarget(this);
+	collider->Init(_eEnabled, _fRadius, _vecOffset);
 	m_pColliderList.push_back(collider);
 	return collider;
 }

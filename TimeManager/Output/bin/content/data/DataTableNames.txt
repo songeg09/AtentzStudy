@@ -1,0 +1,2 @@
+CircleDamageSkill.txt
+CircleDamageZone.txt

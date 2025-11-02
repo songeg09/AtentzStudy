@@ -22,9 +22,8 @@ Collider::~Collider()
 {
 }
 
-void Collider::Init(bool _bEnabled, Vector2 _vecSize, Vector2 _vecOffset)
+void Collider::Init(bool _bEnabled, Vector2 _vecOffset)
 {
-	m_vecSize = _vecSize;
 	m_vecOffset = _vecOffset;
 	m_bEnabled = _bEnabled;
 }
@@ -82,22 +81,65 @@ void Collider::FinalUpdate()
 	}
 }
 
-void Collider::Render(HDC _memDC)
+void RectCollider::Init(bool _bEnabled, Vector2 _vecSize, Vector2 _vecOffset)
 {
-	if (m_bEnabled == false)
+	Collider::Init(_bEnabled, _vecOffset);
+	Collider::SetType(COLLIDER_TYPE::RECTANGLE);
+	SetSize(_vecSize);
+}
+
+void RectCollider::Render(HDC _memDC)
+{
+	if (isEnable() == false)
 		return;
 	GDIManager::GetInstance()->SetBrush(_memDC, BRUSH_TYPE::HOLLOW);
-	if (m_iCollisionCount > 0)
+	if (GetCollisionCount() > 0)
 		GDIManager::GetInstance()->SetPen(_memDC, PEN_TYPE::RED);
 	else
 		GDIManager::GetInstance()->SetPen(_memDC, PEN_TYPE::BLUE);
 
 	Rectangle(_memDC,
-		m_vecPosition.m_fx - m_vecSize.m_fx / 2.0f,
-		m_vecPosition.m_fy - m_vecSize.m_fy / 2.0f,
-		m_vecPosition.m_fx + m_vecSize.m_fx / 2.0f,
-		m_vecPosition.m_fy + m_vecSize.m_fy / 2.0f
+		GetPosition().m_fx - GetSize().m_fx / 2.0f,
+		GetPosition().m_fy - GetSize().m_fy / 2.0f,
+		GetPosition().m_fx + GetSize().m_fx / 2.0f,
+		GetPosition().m_fy + GetSize().m_fy / 2.0f
 	);
+
+	GDIManager::GetInstance()->ResetBrush(_memDC);
+	GDIManager::GetInstance()->ResetPen(_memDC);
+}
+
+Rect RectCollider::GetRect()
+{
+	return Rect{ GetPosition().m_fx - GetSize().m_fx / 2.0f,
+		GetPosition().m_fy - GetSize().m_fy / 2.0f,
+		GetPosition().m_fx + GetSize().m_fx / 2.0f,
+		GetPosition().m_fy + GetSize().m_fy / 2.0f };
+}
+
+void CircleCollider::Init(bool _bEnabled, float _fRadius, Vector2 _vecOffset)
+{
+	Collider::Init(_bEnabled, _vecOffset);
+	Collider::SetType(COLLIDER_TYPE::CIRCLE);
+	SetSize(_fRadius);
+}
+
+void CircleCollider::Render(HDC _memDC)
+{
+	if (isEnable() == false)
+		return;
+	GDIManager::GetInstance()->SetBrush(_memDC, BRUSH_TYPE::HOLLOW);
+	if (GetCollisionCount() > 0)
+		GDIManager::GetInstance()->SetPen(_memDC, PEN_TYPE::RED);
+	else
+	{
+		GDIManager::GetInstance()->SetPen(_memDC, PEN_TYPE::BLUE);
+	}
+	Ellipse(_memDC,
+		GetPosition().m_fx - GetSize(),
+		GetPosition().m_fy - GetSize(),
+		GetPosition().m_fx + GetSize(),
+		GetPosition().m_fy + GetSize());
 
 	GDIManager::GetInstance()->ResetBrush(_memDC);
 	GDIManager::GetInstance()->ResetPen(_memDC);

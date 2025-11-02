@@ -48,9 +48,26 @@ void CollisionManager::RegistCollisionGroup(OBJECT_GROUP _eFirst, OBJECT_GROUP _
 
 bool CollisionManager::IsCollision(Collider* _pFirst, Collider* _pSecond)
 {
+	if (_pFirst->GetType() == _pSecond->GetType())
+	{
+		if (_pFirst->GetType() == COLLIDER_TYPE::RECTANGLE)
+			return IsCollision(static_cast<RectCollider*>(_pFirst), static_cast<RectCollider*>(_pSecond));
+		else
+			return IsCollision(static_cast<CircleCollider*>(_pFirst), static_cast<CircleCollider*>(_pSecond));
+	}
+	else
+	{
+		if (_pFirst->GetType() == COLLIDER_TYPE::RECTANGLE)
+			return IsCollision(static_cast<RectCollider*>(_pFirst), static_cast<CircleCollider*>(_pSecond));
+		else
+			return IsCollision(static_cast<RectCollider*>(_pSecond), static_cast<CircleCollider*>(_pFirst));
+	}
+}
+
+bool CollisionManager::IsCollision(RectCollider* _pFirst, RectCollider* _pSecond)
+{
 	if (_pFirst->isEnable() == false || _pSecond->isEnable() == false)
 		return false;
-
 	Vector2 FirstPosition = _pFirst->GetPosition();
 	Vector2 FirstSize = _pFirst->GetSize();
 	Vector2 SecondPosition = _pSecond->GetPosition();
@@ -63,8 +80,60 @@ bool CollisionManager::IsCollision(Collider* _pFirst, Collider* _pSecond)
 	{
 		return true;
 	}
+	return false;
+}
 
+bool CollisionManager::IsCollision(CircleCollider* _pFirst, CircleCollider* _pSecond)
+{
+	if (_pFirst->isEnable() == false || _pSecond->isEnable() == false)
+		return false;
+	Vector2 FirstPosition = _pFirst->GetPosition();
+	Vector2 SecondPosition = _pSecond->GetPosition();
+	float CircleLength = (FirstPosition - SecondPosition).Length();
+	float SumRadius = _pFirst->GetSize() + _pSecond->GetSize();
+	if (CircleLength <= SumRadius)
+		return true;
+	else
+		return false;
+}
 
+bool CollisionManager::IsCollision(RectCollider* _pRect, CircleCollider* _pCircle)
+{
+	if (_pRect->isEnable() == false || _pCircle->isEnable() == false)
+		return false;
+
+	Vector2 vecCirclePosition = _pCircle->GetPosition();
+	float fRadius = _pCircle->GetSize();
+
+	Rect Rect = _pRect->GetRect();
+
+	if (vecCirclePosition.m_fx >= Rect.left && vecCirclePosition.m_fx <= Rect.right ||
+		vecCirclePosition.m_fy >= Rect.top && vecCirclePosition.m_fy <= Rect.bottom)
+	{
+		Rect = { Rect.left - fRadius,
+				   Rect.top - fRadius,
+				   Rect.right + fRadius,
+				   Rect.bottom + fRadius, };
+		if (vecCirclePosition.m_fx >= Rect.left && vecCirclePosition.m_fx <= Rect.right &&
+			vecCirclePosition.m_fy >= Rect.top && vecCirclePosition.m_fy <= Rect.bottom)
+			return true;
+	}
+	else
+	{
+		Vector2 vecLeftTop = { Rect.left,Rect.top };
+		Vector2 vecRightTop = { Rect.right,Rect.top };
+		Vector2 vecLeftBottom = { Rect.left,Rect.bottom };
+		Vector2 vecRightBottom = { Rect.right,Rect.bottom };
+
+		if ((vecCirclePosition - vecLeftTop).Length() <= _pCircle->GetSize())
+			return true;
+		else if ((vecCirclePosition - vecRightTop).Length() <= _pCircle->GetSize())
+			return true;
+		else if ((vecCirclePosition - vecLeftBottom).Length() <= _pCircle->GetSize())
+			return true;
+		else if ((vecCirclePosition - vecRightBottom).Length() <= _pCircle->GetSize())
+			return true;
+	}
 	return false;
 }
 
