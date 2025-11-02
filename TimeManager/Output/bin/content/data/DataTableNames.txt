@@ -1,2 +1,4 @@
-CircleDamageSkill.txt
-CircleDamageZone.txt
+CircleSkill.txt
+RectSkill.txt
+CircleZone.txt
+RectZone.txt

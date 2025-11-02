@@ -2,8 +2,10 @@
 #include "ResourceManager.h"
 #include "PathManager.h"
 #include "Texture.h"
-#include "CircleDamageSkillData.h"
-#include "CircleDamageZoneData.h"
+#include "CircleSkillData.h"
+#include "RectSkillData.h"
+#include "CircleZoneData.h"
+#include "RectZoneData.h"
 
 ResourceManager::ResourceManager()
 {
@@ -83,11 +85,14 @@ void ResourceManager::Init()
 		{
 			std::wstring FileName;
 			FileNameLoad >> FileName;
-			if (FileName == L"CircleDamageSkill.txt")
-				LoadData<CircleDamageSkillData>(FileName);
-			else if (FileName == L"CircleDamageZone.txt")
-				LoadData<CircleDamageZoneData>(FileName);
-
+			if (FileName == L"CircleSkill.txt")
+				LoadData<CircleSkillData>(FileName);
+			else if (FileName == L"RectSkill.txt")
+				LoadData<RectSkillData>(FileName);
+			else if(FileName == L"CircleZone.txt")
+				LoadData<CircleZoneData>(FileName);
+			else if (FileName == L"RectZone.txt")
+				LoadData<RectZoneData>(FileName);
 		}
 	}
 }

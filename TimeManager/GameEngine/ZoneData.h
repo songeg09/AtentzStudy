@@ -1,15 +1,14 @@
 #pragma once
 #include "Data.h"
-class CircleDamageZoneData : public Data
+
+class ZoneData : public Data
 {
-private:
-	float m_fRadius;
+protected:
 	int m_iAnimationStart;
 	int m_iAnimationEnd;
+
 public:
-	// Data을(를) 통해 상속됨
-	void Load(std::wifstream& _loadFile) override;
-	float GetRadius() { return m_fRadius; }
+	virtual void Load(std::wifstream& _loadFile) = 0;
 	int GetAnimationStart() { return m_iAnimationStart; }
 	int GetAnimationEnd() { return m_iAnimationEnd; }
 };

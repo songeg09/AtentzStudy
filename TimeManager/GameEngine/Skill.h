@@ -20,16 +20,7 @@ public:
 	virtual void Fire() = 0;
 };
 
-class CircleDamageZone;
-class CircleDamageSkill : public Skill
-{
-private:
-	CircleDamageZone* m_pSkillObject;
-public:
-	CircleDamageSkill(int _iIndex, Actor* _pCaster, int _iKey);
 
-	void Create() override;
-	void Cast() override;
-	void Fire() override;
-};
+
+
 

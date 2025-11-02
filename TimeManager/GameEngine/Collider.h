@@ -35,7 +35,7 @@ public:
 
 	inline unsigned int GetID() { return m_uID; }
 	inline Vector2 GetOffsetPosition() { return m_vecOffset; }
-	inline Vector2 GetPosition() { return m_vecPosition; }\
+	inline Vector2 GetPosition() { return m_vecPosition; }
 	inline Object* GetTarget() { return m_pTarget; }
 	inline bool isEnable() { return m_bEnabled; }
 	inline void SetEnable(bool _bEnabled) { m_bEnabled = _bEnabled; }

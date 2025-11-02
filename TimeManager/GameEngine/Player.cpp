@@ -7,19 +7,19 @@
 #include "Core.h"
 #include "Collider.h"
 #include "Monster.h"
-
+#include "CircleDamageSkill.h"
+#include "RectDamageSkill.h"
 
 Player::Player()
 {
 	m_bInput = true;
 	m_pAttackCollider = nullptr;
-	m_Skill = nullptr;
 }
 
 Player::~Player()
 {
-	if (m_Skill != nullptr)
-		delete m_Skill;
+	for (Skill* skill : m_Skills)
+		delete skill;
 }
 
 void Player::Init(Vector2 _vec2Position)
@@ -72,7 +72,11 @@ void Player::Init(Vector2 _vec2Position)
 	// 속도 설정
 	Actor::SetMoveSpeed(200.0f);
 
-	m_Skill = new CircleDamageSkill(1, this, 'Q');
+	Skill* Skill = new CircleDamageSkill(1, this, 'Q');
+	m_Skills.push_back(Skill);
+
+	Skill = new RectDamageSkill(0, this, 'W');
+	m_Skills.push_back(Skill);
 }
 
 void Player::Update()
@@ -92,7 +96,8 @@ void Player::Attack(Collider* _pOther)
 
 void Player::Input()
 {
-	m_Skill->Input();
+	for (Skill* skill : m_Skills)
+		skill->Input();
 
 	if (m_bInput == false)
 		return;

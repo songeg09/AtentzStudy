@@ -77,20 +77,38 @@
     <Filter Include="Engine\05. Resource\Data">
       <UniqueIdentifier>{70ddc61b-40b7-4fbb-ad7a-4a5e5b0244b7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\05. Resource\Data\CircleDamageSkillData">
-      <UniqueIdentifier>{5d1ff0f2-8d69-4853-93e6-9c9eb55632f3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\05. Resource\Data\CircleDamageZoneData">
-      <UniqueIdentifier>{096555a4-10ba-4f59-87f7-3906454f53ac}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\04. Object\SkillObject">
       <UniqueIdentifier>{a39004ff-eefa-4199-82e9-894374e00aa2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\04. Object\SkillObject\CircleDamageZone">
+    <Filter Include="Engine\09. Skill\CircleDamageSkill">
+      <UniqueIdentifier>{c5e3d384-6275-4e1f-adce-c9a63e18c06d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Resource\Data\ZoneData">
+      <UniqueIdentifier>{3a8e9a30-c209-48e3-99d4-331d1ea6d71e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Resource\Data\ZoneData\CircleZoneData">
+      <UniqueIdentifier>{096555a4-10ba-4f59-87f7-3906454f53ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Resource\Data\ZoneData\RectZoneData">
+      <UniqueIdentifier>{fc8a5867-35eb-48d4-8134-8b55fd388b7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Resource\Data\SkillData">
+      <UniqueIdentifier>{490f7367-e951-4c42-8d05-97ef81358682}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Resource\Data\SkillData\CircleSkillData">
+      <UniqueIdentifier>{5d1ff0f2-8d69-4853-93e6-9c9eb55632f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Resource\Data\SkillData\RectSkillData">
+      <UniqueIdentifier>{d0e96244-3d34-4cb1-9d68-7e93089afc9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Object\SkillObject\CircleZone">
       <UniqueIdentifier>{f0ec8e59-4500-4528-a088-3b2b53dbe35b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\04. Object\SkillObject\RectDamageZone">
+    <Filter Include="Engine\04. Object\SkillObject\RectZone">
       <UniqueIdentifier>{b05c2344-f808-42fc-8620-92cf9682959c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\09. Skill\RectDamageSkill">
+      <UniqueIdentifier>{7b76c51c-c172-4a1e-85e7-60a06980ad9c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -173,20 +191,41 @@
     <ClInclude Include="Skill.h">
       <Filter>Engine\09. Skill</Filter>
     </ClInclude>
-    <ClInclude Include="CircleDamageSkillData.h">
-      <Filter>Engine\05. Resource\Data\CircleDamageSkillData</Filter>
+    <ClInclude Include="CircleSkillData.h">
+      <Filter>Engine\05. Resource\Data\SkillData\CircleSkillData</Filter>
     </ClInclude>
     <ClInclude Include="Data.h">
       <Filter>Engine\05. Resource\Data</Filter>
     </ClInclude>
-    <ClInclude Include="CircleDamageZoneData.h">
-      <Filter>Engine\05. Resource\Data\CircleDamageZoneData</Filter>
+    <ClInclude Include="CircleZoneData.h">
+      <Filter>Engine\05. Resource\Data\ZoneData\CircleZoneData</Filter>
     </ClInclude>
     <ClInclude Include="SkillObject.h">
       <Filter>Engine\04. Object\SkillObject</Filter>
     </ClInclude>
-    <ClInclude Include="CircleDamageZone.h">
-      <Filter>Engine\04. Object\SkillObject\CircleDamageZone</Filter>
+    <ClInclude Include="CircleZone.h">
+      <Filter>Engine\04. Object\SkillObject\CircleZone</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleDamageSkill.h">
+      <Filter>Engine\09. Skill\CircleDamageSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="RectDamageSkill.h">
+      <Filter>Engine\09. Skill\RectDamageSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="RectZone.h">
+      <Filter>Engine\04. Object\SkillObject\RectZone</Filter>
+    </ClInclude>
+    <ClInclude Include="RectZoneData.h">
+      <Filter>Engine\05. Resource\Data\ZoneData\RectZoneData</Filter>
+    </ClInclude>
+    <ClInclude Include="RectSkillData.h">
+      <Filter>Engine\05. Resource\Data\SkillData\RectSkillData</Filter>
+    </ClInclude>
+    <ClInclude Include="ZoneData.h">
+      <Filter>Engine\05. Resource\Data\ZoneData</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillData.h">
+      <Filter>Engine\05. Resource\Data\SkillData</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -264,17 +303,38 @@
     <ClCompile Include="Data.cpp">
       <Filter>Engine\05. Resource\Data</Filter>
     </ClCompile>
-    <ClCompile Include="CircleDamageSkillData.cpp">
-      <Filter>Engine\05. Resource\Data\CircleDamageSkillData</Filter>
+    <ClCompile Include="CircleSkillData.cpp">
+      <Filter>Engine\05. Resource\Data\SkillData\CircleSkillData</Filter>
     </ClCompile>
-    <ClCompile Include="CircleDamageZoneData.cpp">
-      <Filter>Engine\05. Resource\Data\CircleDamageZoneData</Filter>
+    <ClCompile Include="CircleZoneData.cpp">
+      <Filter>Engine\05. Resource\Data\ZoneData\CircleZoneData</Filter>
     </ClCompile>
     <ClCompile Include="SkillObject.cpp">
       <Filter>Engine\04. Object\SkillObject</Filter>
     </ClCompile>
-    <ClCompile Include="CircleDamageZone.cpp">
-      <Filter>Engine\04. Object\SkillObject\CircleDamageZone</Filter>
+    <ClCompile Include="CircleZone.cpp">
+      <Filter>Engine\04. Object\SkillObject\CircleZone</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleDamageSkill.cpp">
+      <Filter>Engine\09. Skill\CircleDamageSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="RectDamageSkill.cpp">
+      <Filter>Engine\09. Skill\RectDamageSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="RecteZone.cpp">
+      <Filter>Engine\04. Object\SkillObject\RectZone</Filter>
+    </ClCompile>
+    <ClCompile Include="RectZoneData.cpp">
+      <Filter>Engine\05. Resource\Data\ZoneData\RectZoneData</Filter>
+    </ClCompile>
+    <ClCompile Include="RectSkillData.cpp">
+      <Filter>Engine\05. Resource\Data\SkillData\RectSkillData</Filter>
+    </ClCompile>
+    <ClCompile Include="ZoneData.cpp">
+      <Filter>Engine\05. Resource\Data\ZoneData</Filter>
+    </ClCompile>
+    <ClCompile Include="SkillData.cpp">
+      <Filter>Engine\05. Resource\Data\SkillData</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

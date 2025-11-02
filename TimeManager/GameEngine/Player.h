@@ -2,6 +2,7 @@
 #include "Actor.h"
 #include "ResourceManager.h"
 #include "Skill.h"
+
 class Player : public Actor
 {
 	enum ANIMATION
@@ -15,7 +16,8 @@ class Player : public Actor
 private:
 	bool m_bInput;
 	Collider* m_pAttackCollider;
-	Skill* m_Skill;
+	std::vector<Skill*> m_Skills;
+	
 public:
 	Player();
 	~Player();

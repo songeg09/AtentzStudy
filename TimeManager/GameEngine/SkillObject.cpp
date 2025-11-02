@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "SkillObject.h"
+#include "Collider.h"
 
 SkillObject::SkillObject()
 {
@@ -21,4 +22,9 @@ void SkillObject::Update()
 	{
 		SetPosition(m_pTarget->GetPosition());
 	}
+}
+
+void SkillObject::SetEnable(bool _bEnable)
+{
+	m_bEnable = _bEnable;
 }
