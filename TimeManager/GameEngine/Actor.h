@@ -20,7 +20,7 @@ private:
 
 public:
 	Actor();
-	~Actor();
+	virtual ~Actor();
 	virtual void Attack(Collider* _pOther) = 0;
 	inline void SetMovable(bool _bMovable) { m_bMovable = _bMovable; }
 	inline bool IsMovable() { return m_bMovable == true; }
@@ -36,9 +36,11 @@ public:
 	void Init(Vector2 _vec2Position) override;
 	inline DIRECTION GetDirection() { return m_eDirection; }
 
-protected:
 	void SetAnimation(int _iIndex);
 	inline int GetCurAnimation() { return m_iCurAnimation; }
+
+protected:
+	
 	void SetAnimationEvent(int _iIndex, int _iTextureIndex, std::function<void()> _pCallBack);
 	void InitAnimation(int _iIndex, int _iStartTextureIndex, int _iEndTextureIndex,
 		float _fPlaySpeed = 1.0f, ANIMATION_TYPE _eAnimationType = ANIMATION_TYPE::LOOP, ANCHOR _eAnchor = ANCHOR::CENTER);

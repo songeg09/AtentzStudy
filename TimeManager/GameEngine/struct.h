@@ -1,5 +1,15 @@
 #pragma once
 
+enum DIRECTION
+{
+	START,
+	LEFT = START,
+	RIGHT,
+	UP,
+	DOWN,
+	END
+};
+
 struct Rect
 {
 	float left;

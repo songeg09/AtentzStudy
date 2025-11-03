@@ -1,20 +1,20 @@
 #include "pch.h"
-#include "Skill.h"
-#include "RectDamageSkill.h"
+#include "RectSkill.h"
 #include "RectZone.h"
 #include "RectSkillData.h"
 #include "ResourceManager.h"
+#include "TimerManager.h"
 #include "Actor.h"
 #include "SceneManager.h"
 #include "InputManager.h"
 
-RectDamageSkill::RectDamageSkill(int _iIndex, Actor* _pCaster, int _iKey)
+RectSkill::RectSkill(int _iIndex, Actor* _pCaster, int _iKey)
 	: Skill(_iIndex, _pCaster, _iKey)
 {
 	m_pSkillObject = nullptr;
 }
 
-void RectDamageSkill::Create()
+void RectSkill::Create()
 {
 	RectSkillData* data = static_cast<RectSkillData*>(ResourceManager::GetInstance()->GetData(L"RectSkill.txt", Skill::GetIndex()));
 	if (data != nullptr)
@@ -34,15 +34,4 @@ void RectDamageSkill::Create()
 			m_pSkillObject->SetPosition(Skill::GetCaster()->GetPosition());
 		}
 	}
-}
-
-void RectDamageSkill::Cast()
-{
-
-}
-
-void RectDamageSkill::Fire()
-{
-
-	m_pSkillObject->SetEnable(false);
 }

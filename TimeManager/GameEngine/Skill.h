@@ -1,7 +1,7 @@
 #pragma once
 #include "Animation.h"
 class Actor;
-class Skill
+class Skill abstract
 {
 private:
 	Actor* m_pCaster;

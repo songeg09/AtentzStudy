@@ -6,7 +6,7 @@ class Actor;
 class RectCollider;
 class RectZone : public SkillObject
 {
-private:
+protected:
 	std::list<Actor*> m_TargetList;
 	RectCollider* m_pCollider;
 	Animation m_Animation;

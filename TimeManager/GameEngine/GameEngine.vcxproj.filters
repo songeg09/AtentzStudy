@@ -107,8 +107,14 @@
     <Filter Include="Engine\04. Object\SkillObject\RectZone">
       <UniqueIdentifier>{b05c2344-f808-42fc-8620-92cf9682959c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\09. Skill\RectDamageSkill">
+    <Filter Include="Engine\04. Object\SkillObject\RectZone\SwordBeamObject">
+      <UniqueIdentifier>{a41f500a-3a1a-4886-817d-f5028aae3059}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\09. Skill\RectSkill">
       <UniqueIdentifier>{7b76c51c-c172-4a1e-85e7-60a06980ad9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\09. Skill\RectSkill\SwordBeam">
+      <UniqueIdentifier>{81fcd77c-8ae1-4e03-9895-0e6753b1ff52}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -209,8 +215,8 @@
     <ClInclude Include="CircleDamageSkill.h">
       <Filter>Engine\09. Skill\CircleDamageSkill</Filter>
     </ClInclude>
-    <ClInclude Include="RectDamageSkill.h">
-      <Filter>Engine\09. Skill\RectDamageSkill</Filter>
+    <ClInclude Include="RectSkill.h">
+      <Filter>Engine\09. Skill\RectSkill</Filter>
     </ClInclude>
     <ClInclude Include="RectZone.h">
       <Filter>Engine\04. Object\SkillObject\RectZone</Filter>
@@ -226,6 +232,12 @@
     </ClInclude>
     <ClInclude Include="SkillData.h">
       <Filter>Engine\05. Resource\Data\SkillData</Filter>
+    </ClInclude>
+    <ClInclude Include="SwordBeamObject.h">
+      <Filter>Engine\04. Object\SkillObject\RectZone\SwordBeamObject</Filter>
+    </ClInclude>
+    <ClInclude Include="SwordBeam.h">
+      <Filter>Engine\09. Skill\RectSkill\SwordBeam</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -318,8 +330,8 @@
     <ClCompile Include="CircleDamageSkill.cpp">
       <Filter>Engine\09. Skill\CircleDamageSkill</Filter>
     </ClCompile>
-    <ClCompile Include="RectDamageSkill.cpp">
-      <Filter>Engine\09. Skill\RectDamageSkill</Filter>
+    <ClCompile Include="RectSkill.cpp">
+      <Filter>Engine\09. Skill\RectSkill</Filter>
     </ClCompile>
     <ClCompile Include="RecteZone.cpp">
       <Filter>Engine\04. Object\SkillObject\RectZone</Filter>
@@ -335,6 +347,12 @@
     </ClCompile>
     <ClCompile Include="SkillData.cpp">
       <Filter>Engine\05. Resource\Data\SkillData</Filter>
+    </ClCompile>
+    <ClCompile Include="SwordBeamObject.cpp">
+      <Filter>Engine\04. Object\SkillObject\RectZone\SwordBeamObject</Filter>
+    </ClCompile>
+    <ClCompile Include="SwordBeam.cpp">
+      <Filter>Engine\09. Skill\RectSkill\SwordBeam</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

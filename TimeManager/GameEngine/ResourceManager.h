@@ -1,16 +1,6 @@
 #pragma once
 #include "PathManager.h"
 
-enum DIRECTION
-{
-	START,
-	LEFT = START,
-	RIGHT,
-	UP,
-	DOWN,
-	END
-};
-
 enum TEXTURE_TYPE
 {
 	BACKGROUND,
@@ -65,6 +55,7 @@ public:
 	void Init();
 	Texture* LoadTexture(TEXTURE_TYPE _eTextureType, DIRECTION _eDirection = DIRECTION::END);
 	Texture* FindTexture(const std::wstring& _strKey);
+
 	Data* GetData(std::wstring _strkey, int _iIndex);
 
 	template<typename DataType>

@@ -52,6 +52,21 @@ void Animation::Init(int _iStartTextureIndex, int _iEndTextureIndex, ANIMATION_T
 	m_fAccTime = 0.0f;
 }
 
+//void Animation::Init(TEXTURE_TYPE _TextureType, int _iStartTextureIndexI, int _iStartTextureIndexJ, int _AnimationLength, ANIMATION_TYPE _eType, float _fSpeed, ANCHOR _eAnchor)
+//{
+//	m_vecList.clear();
+//	m_vecList.resize(_AnimationLength);
+//	for (int j = 0; j < m_vecList.size(); ++j)
+//	{
+//		m_vecList[j] = AnimNode{ ResourceManager::GetInstance()->LoadTexture(static_cast<TEXTURE_TYPE>(j + _iStartTextureIndex)),nullptr };
+//	}
+//	m_eType = _eType;
+//	m_fSpeed = _fSpeed / static_cast<float>(m_vecList.size());
+//	m_eAnchor = _eAnchor;
+//	m_iCurIndex = 0;
+//	m_fAccTime = 0.0f;
+//}
+
 void Animation::Update()
 {
 	if (m_eType == ANIMATION_TYPE::ONCE && m_iCurIndex >= m_vecList.size() - 1)

@@ -8,7 +8,7 @@
 #include "Collider.h"
 #include "Monster.h"
 #include "CircleDamageSkill.h"
-#include "RectDamageSkill.h"
+#include "SwordBeam.h"
 
 Player::Player()
 {
@@ -75,7 +75,7 @@ void Player::Init(Vector2 _vec2Position)
 	Skill* Skill = new CircleDamageSkill(1, this, 'Q');
 	m_Skills.push_back(Skill);
 
-	Skill = new RectDamageSkill(0, this, 'W');
+	Skill = new SwordBeam(0, this, 'W');
 	m_Skills.push_back(Skill);
 }
 
