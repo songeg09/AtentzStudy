@@ -52,6 +52,8 @@ std::wstring ResourceManager::GetTextureFileName(TEXTURE_TYPE _eTextureType, DIR
 	case TEXTURE_TYPE::EFFECT_01_04:				return L"Effect03.bmp";
 	case TEXTURE_TYPE::EFFECT_01_05:				return L"Effect04.bmp";
 	case TEXTURE_TYPE::EFFECT_01_06:				return L"Effect05.bmp";
+
+	case TEXTURE_TYPE::EFFECT:						return L"Effect.bmp";
 	default: return L"";
 	}
 }
@@ -111,6 +113,26 @@ Texture* ResourceManager::LoadTexture(TEXTURE_TYPE _eTextureType, DIRECTION _eDi
 		std::wstring strPath = PathManager::GetInstance()->GetContentpath();
 		strPath += ConstValue::strTexturePath + strFileName;
 		pTexture->Load(strPath);
+		pTexture->SetKey(strKey);
+		pTexture->SetRelativePath(strFileName);
+		m_MapTexture.insert(std::make_pair(strKey, pTexture));
+	}
+	return pTexture;
+}
+
+Texture* ResourceManager::LoadSubTexture(TEXTURE_TYPE _eTextureType, int _iStartTextureIndexI, int _iStartTextureIndexJ, int _Size)
+{
+	std::wstring strFileName = GetTextureFileName(_eTextureType);
+	std::wstring strKey = strFileName.substr(0, strFileName.length() - 4);
+	strKey += std::to_wstring(_iStartTextureIndexI) + L"_" + std::to_wstring(_iStartTextureIndexJ);
+
+	Texture* pTexture = FindTexture(strKey);
+	if (pTexture == nullptr)
+	{
+		pTexture = new Texture;
+		std::wstring strPath = PathManager::GetInstance()->GetContentpath();
+		strPath += ConstValue::strTexturePath + strFileName;
+		pTexture->LoadPartially(strPath, _iStartTextureIndexI, _iStartTextureIndexJ, _Size);
 		pTexture->SetKey(strKey);
 		pTexture->SetRelativePath(strFileName);
 		m_MapTexture.insert(std::make_pair(strKey, pTexture));

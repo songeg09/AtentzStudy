@@ -19,7 +19,7 @@ void RectZone::Init(int _iIndex, Object* _pTarget)
 	SkillObject::Init(_pTarget);
 
 	RectZoneData* data = static_cast<RectZoneData*>(ResourceManager::GetInstance()->GetData(L"RectZone.txt", _iIndex));
-
+	assert(data != nullptr);
 	if (m_pCollider == nullptr)
 	{
 		m_pCollider = static_cast<RectCollider*>(CreateRectCollider(true, data->GetSize()));

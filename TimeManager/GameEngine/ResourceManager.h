@@ -39,6 +39,7 @@ enum TEXTURE_TYPE
 	EFFECT_01_05,
 	EFFECT_01_06,
 	EFFECT_01_END,
+	EFFECT
 };
 
 class Texture;
@@ -49,11 +50,12 @@ class ResourceManager
 private:
 	std::map<std::wstring, Texture*> m_MapTexture;
 	std::map<std::wstring, std::vector<Data*>> m_MapData;
-	std::wstring GetTextureFileName(TEXTURE_TYPE _eTextureType, DIRECTION _eDirection);
+	std::wstring GetTextureFileName(TEXTURE_TYPE _eTextureType, DIRECTION _eDirection = DIRECTION::END);
 	std::wstring GetDirectionString(DIRECTION _eDirection);
 public:
 	void Init();
 	Texture* LoadTexture(TEXTURE_TYPE _eTextureType, DIRECTION _eDirection = DIRECTION::END);
+	Texture* LoadSubTexture(TEXTURE_TYPE _eTextureType, int _iStartTextureIndexI, int _iStartTextureIndexJ, int _Size );
 	Texture* FindTexture(const std::wstring& _strKey);
 
 	Data* GetData(std::wstring _strkey, int _iIndex);
